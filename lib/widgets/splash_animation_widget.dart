@@ -1,6 +1,11 @@
+import 'dart:ui';
+
 import 'package:boilerplate/constants/colors.dart';
+import 'package:boilerplate/constants/font_family.dart';
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
+
+const List<String> dictionary = ["Alzheimer", "Ejercicios", "Prevención"];
 
 class _Bubble {
   final Color color;
@@ -15,6 +20,23 @@ class _Bubble {
       this.speed,
       this.size,
       this.initialPosition});
+}
+
+class _WordBubble {
+  final Color color;
+  final double direction;
+  final double speed;
+  final double size;
+  final double initialPosition;
+  final String word;
+
+  _WordBubble(
+      {this.color,
+      this.direction,
+      this.speed,
+      this.size,
+      this.initialPosition,
+      this.word});
 }
 
 class _CloudBubblePainter extends CustomPainter {
@@ -43,6 +65,45 @@ class _CloudBubblePainter extends CustomPainter {
   bool shouldRepaint(CustomPainter oldDelegate) => false;
 }
 
+class __CloudWordBubblePainter extends CustomPainter {
+  __CloudWordBubblePainter(
+    this.animation,
+    this.bubbles,
+  ) : super(repaint: animation);
+
+  final Animation<double> animation;
+  final List<_WordBubble> bubbles;
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    for (_WordBubble _bubble in bubbles) {
+      final offset = Offset(
+        size.width / 2 + _bubble.direction * animation.value,
+        size.height * 1.2 * (1 - animation.value) -
+            _bubble.speed * animation.value +
+            _bubble.initialPosition * (1 - animation.value),
+      );
+
+      TextSpan span = new TextSpan(
+          style: new TextStyle(
+              color: _bubble.color,
+              fontFamily: FontFamily.productSans,
+              fontSize: 18,
+              fontWeight: FontWeight.w700),
+          text: _bubble.word);
+      TextPainter tp = new TextPainter(
+          text: span,
+          textAlign: TextAlign.left,
+          textDirection: TextDirection.ltr);
+      tp.layout();
+      tp.paint(canvas, offset);
+    }
+  }
+
+  @override
+  bool shouldRepaint(CustomPainter oldDelegate) => false;
+}
+
 class SplashAnimationWidget extends StatelessWidget {
   SplashAnimationWidget(
       {Key key, this.progressAnimation, this.cloudOutAnimation})
@@ -50,7 +111,7 @@ class SplashAnimationWidget extends StatelessWidget {
 
   final Animation<double> progressAnimation;
   final Animation<double> cloudOutAnimation;
-  final bubbles = List<_Bubble>.generate(500, (index) {
+  final bubbles = List<_WordBubble>.generate(100, (index) {
     final size = math.Random().nextInt(20) + 5.0;
     final speed = math.Random().nextInt(50) + 1.0;
     final directionRandom = math.Random().nextBool();
@@ -60,14 +121,15 @@ class SplashAnimationWidget extends StatelessWidget {
     final color = colorRandom
         ? AppColors.mainSplashColor
         : AppColors.secundarySplashColor;
+    final int wordIndex = math.Random().nextInt(dictionary.length);
 
-    return _Bubble(
-      color: color,
-      direction: direction,
-      speed: speed,
-      size: size,
-      initialPosition: index * 10.0,
-    );
+    return _WordBubble(
+        color: color,
+        direction: direction,
+        speed: speed,
+        size: size,
+        initialPosition: index * 10.0,
+        word: dictionary.elementAt(wordIndex));
   });
 
   @override
@@ -140,7 +202,7 @@ class SplashAnimationWidget extends StatelessWidget {
                   child: ClipOval(
                     child: CustomPaint(
                       foregroundPainter:
-                          _CloudBubblePainter(progressAnimation, bubbles),
+                          __CloudWordBubblePainter(progressAnimation, bubbles),
                       child: Container(
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
