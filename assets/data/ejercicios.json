@@ -1,0 +1,310 @@
+{
+  "docs": [
+    {
+      "id": 1,
+      "type": "img",
+      "header": "Ejercicio 1. Posición inicial. Comenzará realizando estiramiento, tomando aire por la nariz y exhalando por la boca suavemente. Un brazo completamente estirado tratará de coger algo imaginario muy lejos de la cabeza y al mismo tiempo estirará el miembro inferior opuesto al brazo con la misma intención de alejar el pie más lejos, ambos movimientos con fuerza. Repetir alternados. Tiempo: 1 minuto 30 segundos por cada movimiento. </br>El objetivo es pasar de la posición horizontal con músculos relajados a aumentar el tono de ellos, la fuerza produce aumento de la energía y favorece el retorno de la sangre de los miembros inferiores para el corazón. ",
+      "img": "1.jpg",
+      "ejercicio": 1,
+      "tema": 2
+    },
+    {
+      "id": 2,
+      "type": "img",
+      "header": "Ejercicio 2. Realizará movimientos de flexión y extensión de todos los dedos de los pies, con fuerza hasta que sienta contracción de los músculos de las piernas. Seis repeticiones.",
+      "img": "2.jpg",
+      "ejercicio": 2,
+      "tema": 2
+    },
+    {
+      "id": 3,
+      "type": "img",
+      "header": "Ejercicio 3. Movimientos con fuerza de ambos tobillos hacia arriba y hacia abajo. Seis repeticiones.",
+      "img": "3.jpg",
+      "ejercicio": 3,
+      "tema": 2
+    },
+    {
+      "id": 4,
+      "type": "img",
+      "header": "Ejercicio 4. Movimientos con fuerza de ambos tobillos en rotaciones hacia adentro y hacia afuera. Seis repeticiones.</br>Estos ejercicios realizados con fuerza además de fortalecer los músculos de las piernas y de los pies, ejercen el efecto de bomba de impulsión por facilitar el regreso de la sangre hacia el corazón y el drenaje linfático.</br>Inmediatamente comenzar con los ejercicios mostrados a continuación. En la tercera edad debe seleccionar los ejercicios que sean realizables sin provocar molestias en el pecho, no falta de aire.\n",
+      "img": "4.jpg",
+      "ejercicio": 4,
+      "tema": 2
+    },
+    {
+      "id": 5,
+      "type": "img",
+      "header": "Ejercicio 5. Elevar un miembro inferior en extensión máxima posible, subir y bajar alternando el miembro inferior. Seis repeticiones.",
+      "img": "5.jpg",
+      "ejercicio": 5,
+      "tema": 2
+    },
+    {
+      "id": 6,
+      "type": "img",
+      "header": "Ejercicio 6. Doblar una rodilla, levantar la pierna bien arriba, después doblar la rodilla nuevamente y estirar completamente el miembro inferior apoyado en la cama. Repetir el movimiento en el otro miembro inferior. Seis repeticiones.",
+      "img": "6.jpg",
+      "ejercicio": 6,
+      "tema": 2
+    },
+    {
+      "id": 7,
+      "type": "img",
+      "header": "Ejercicio 7. Doblar una rodilla, el otro miembro permanece en extensión completo apoyado en la cama. La rodilla doblada tratará de llevarla a la boca. Alternar el ejercicio. Seis repeticiones.",
+      "img": "7.jpg",
+      "ejercicio": 7,
+      "tema": 2
+    },
+    {
+      "id": 8,
+      "type": "img",
+      "header": "Ejercicio 8. Ambas rodillas flexionadas tratar de llevarlas hacia la boca. Seis repeticiones.",
+      "img": "8.jpg",
+      "ejercicio": 8,
+      "tema": 2
+    },
+    {
+      "id": 9,
+      "type": "img",
+      "header": "Ejercicio 9. Ambas rodillas flexionadas, las abrirá hacia afuera y adentro con fuerza. Haciendo compresión y relajación contra el colchón, para evitar afecciones (profilaxis) en órganos pelvianos en ambos sexos principalmente la próstata. Seis a diez repeticiones.",
+      "img": "9.jpg",
+      "ejercicio": 9,
+      "tema": 2
+    },
+    {
+      "id": 10,
+      "type": "img",
+      "header": "Ejercicio 10. Con las rodillas flexionadas tratar de levantar el tronco. Seis repeticiones.",
+      "img": "10.jpg",
+      "ejercicio": 10,
+      "tema": 2
+    },
+    {
+      "id": 11,
+      "type": "img",
+      "header": "Ejercicio 11. Realizar movimientos de pedaleo.",
+      "img": "11.jpg",
+      "ejercicio": 11,
+      "tema": 2
+    },
+    {
+      "id": 12,
+      "type": "img",
+      "header": "Ejercicio 12. Con las piernas completamente en extensión y elevadas realizar movimientos de abrir y cerrar ambos miembros inferiores. Seis repeticiones.",
+      "img": "12.jpg",
+      "ejercicio": 12,
+      "tema": 2
+    },
+    {
+      "id": 13,
+      "type": "img",
+      "header": "Ejercicio 13. En posición de boca abajo, doblará una rodilla y levantará todo el miembro inferior sintiendo la contracción de los músculos de la pelvis principalmente de la nalga. Alternar el ejercicio. Seis repeticiones.",
+      "img": "13.jpg",
+      "ejercicio": 13,
+      "tema": 2
+    },
+    {
+      "id": 14,
+      "type": "img",
+      "header": "Ejercicio 14. En posición sentada, flexionar la cabeza hacia arriba y hacia abajo; luego moverla de un lado a otro. Tiempo de duración: 1 minuto 30 segundos para cada uno.",
+      "img": "14.jpg",
+      "ejercicio": 14,
+      "tema": 3
+    },
+    {
+      "id": 15,
+      "type": "img",
+      "header": "Ejercicio 15. En el paso 1 elevar los hombros; en el paso 2 los codos flexionados harán fuerza unos contra otro, desplazando los hombros hacia delante y hacia atrás; en el paso 3 y el paso 4, ambos de frente a una pared; en el paso 3 mantendrá los codos en extensión y empujará contra la pared, para fortalecer los músculos de la cara posterior de los hombros; en el paso 4 doblará los codos haciendo fuerza, tratará de aproximar la frente a la pared, con el objetivo de fortalecer los músculos de la cara anterior de los hombros y del pecho, principalmente de los pectorales. Tiempo de duración: 1 minuto 30 segundos para cada uno.",
+      "img": "15.jpg",
+      "ejercicio": 15,
+      "tema": 3
+    },
+    {
+      "id": 16,
+      "type": "img",
+      "header": "Ejercicio 16. Para fortalecer músculos del cuello y del hombro. La mano hará resistencia cuando la cabeza, tratará de forzarla para un lado, cambia la posición de la mano para el movimiento contrario al anterior. Una mano en la frente hará resistencia cuando la cabeza trate de flexionar, cambia la posición, una mano detrás de la cabeza, hará resistencia cuando la cabeza trate de forzarla hacia atrás. Tiempo de duración: 1 minuto y 30 segundos para cada uno.",
+      "img": "16.jpg",
+      "ejercicio": 16,
+      "tema": 3
+    },
+    {
+      "id": 17,
+      "type": "img",
+      "header": "Ejercicio 17. </br>» Flexión. Elevar el miembro superior por delante del tórax hasta los 90 grados. Volver a la posición inicial y repetir el ejercicio de 6 a 10 veces.</br>» Extensión. Elevar el miembro superior por el lado del tórax hasta los 90 grados. Volver a la posición inicial y repetir el ejercicio de 6 a 10 veces.</br>» Hiperextensión. De la posición inicial pegado al tórax llevar el miembro superior hacia atrás, volver a la posición inicial y repetir el ejercicio de 6 a 10 veces.\n",
+      "img": "17.jpg",
+      "ejercicio": 17,
+      "tema": 4
+    },
+    {
+      "id": 18,
+      "type": "img",
+      "header": "Ejercicio 18. </br>» Abducción. Separar el miembro superior del tórax. Volver a la posición inicial y repetir el ejercicio de 6 a 10 veces.</br>» Aducción. De la posición anterior, el miembro superior pegarlo al tórax con fuerza y repetir el ejercicio de 6 a 10 veces.\n",
+      "img": "18.jpg",
+      "ejercicio": 18,
+      "tema": 4
+    },
+    {
+      "id": 19,
+      "type": "img",
+      "header": "Ejercicio 19. Posición inicial de pie o sentada, movilizar los miembros superiores en todas las direcciones dibujando circunferencias de frente y de lado respirando. De 6 a 10 repeticiones.",
+      "img": "19.jpg",
+      "ejercicio": 19,
+      "tema": 4
+    },
+    {
+      "id": 20,
+      "type": "img",
+      "header": "Ejercicio 20. Las muñecas las movilizará en varias direcciones con los puños cerrados 10 repeticiones. Los dedos los movilizará en flexión y extensión con fuerza.\n\n",
+      "img": "20.jpg",
+      "ejercicio": 20,
+      "tema": 5
+    },
+    {
+      "id": 21,
+      "type": "img",
+      "header": "Ejercicio 21. Hará el número cero con cada dedo de ambas manos al mismo tiempo.\n\n",
+      "img": "21.jpg",
+      "ejercicio": 21,
+      "tema": 5
+    },
+    {
+      "id": 22,
+      "type": "img",
+      "header": "Ejercicio 22. Movimientos de estiramientos, levantar un brazo como si la mano quisiera tocar el techo, alternar con el otro brazo que estará hacia abajo con el codo recto y el cuerpo apoyado contra la pared.",
+      "img": "22.jpg",
+      "ejercicio": 22,
+      "tema": 6
+    },
+    {
+      "id": 23,
+      "type": "img",
+      "header": "Ejercicio 23. Movimientos del tronco en flexión, tratando de llegar a las rodillas, incorporarse y desviar el tronco hacia atrás; desde la posición erecta realizar rotaciones del tronco hacia la derecha e izquierda, inclinar el tronco hacia derecha y a la izquierda. De 6 a 10 repeticiones.",
+      "img": "23.jpg",
+      "ejercicio": 23,
+      "tema": 6
+    },
+    {
+      "id": 24,
+      "type": "img",
+      "header": "Ejercicio 24. Cuclillas, con o sin apoyo, mantener el tronco recto para equilibrar el centro de gravedad. De 6 a 10 repeticiones.",
+      "img": "24.jpg",
+      "ejercicio": 24,
+      "tema": 6
+    },
+    {
+      "id": 25,
+      "type": "img",
+      "header": "Ejercicio 25. En posición de pie con la columna recta, iniciará movimientos en tijera, abriendo y cerrando los miembros inferiores levantados, hacia los lados, luego hacia adelante y hacia atrás cada miembro. De 6 a 10 repeticiones.",
+      "img": "25.jpg",
+      "ejercicio": 25,
+      "tema": 6
+    },
+    {
+      "id": 26,
+      "type": "img",
+      "header": "Ejercicio 26. En posición erecta de pie, una rodilla doblada en 90 grados, el otro pie apoyado en el piso hará movimientos de subir y bajar varias veces hasta una altura cómoda y repetir el mismo ejercicio con el otro miembro para fortalecer los músculos de las piernas. Realizar 10 repeticiones.",
+      "img": "26.jpg",
+      "ejercicio": 26,
+      "tema": 6
+    },
+    {
+      "id": 27,
+      "type": "img",
+      "header": "Ejercicio 27. La mano izquierda sobre la rodilla y el pie hace fuerza contra el piso, mentalmente cuenta hasta tres y cambia a la otra rodilla para que el pie derecho haga presión contra el piso. Realizar 4 repeticiones.",
+      "img": "27.jpg",
+      "ejercicio": 26,
+      "tema": 7
+    },
+    {
+      "id": 28,
+      "type": "img",
+      "header": "Ejercicio 28. La pierna izquierda hará fuerza hacia arriba y la mano izquierda le hará contrafuerza, mentalmente cuenta hasta tres y cambia para la otra pierna. Realizar 4 repeticiones.\n\n",
+      "img": "28.jpg",
+      "ejercicio": 28,
+      "tema": 7
+    },
+    {
+      "id": 29,
+      "type": "img",
+      "header": "Ejercicio 29. Rodillas unidas, tratará de separarlas, pero las manos se lo impiden con fuerza. Contar hasta tres, relajar y realizar 4 repeticiones.\n\n",
+      "img": "29.jpg",
+      "ejercicio": 29,
+      "tema": 7
+    },
+    {
+      "id": 30,
+      "type": "img",
+      "header": "Ejercicio 30. Rodillas separadas tratarán con fuerza de unirse, pero las manos se lo impiden haciendo contrafuerza. Realizar 4 repeticiones.",
+      "img": "30.jpg",
+      "ejercicio": 30,
+      "tema": 7
+    },
+    {
+      "id": 31,
+      "type": "img",
+      "header": "Ejercicio 31. Ejercicio para la rodilla izquierda de flexión y extensión. Realizar 4 repeticiones.",
+      "img": "31.jpg",
+      "ejercicio": 31,
+      "tema": 7
+    },
+    {
+      "id": 32,
+      "type": "img",
+      "header": "Ejercicio 32. Cruzar una pierna sobre la otra y alternar. Realizar 4 repeticiones. </br>Realizar movimientos de extensión y flexión de una rodilla con fuerza alternando con la otra. De 6 a 10 repeticiones.\n",
+      "img": "32.jpg",
+      "ejercicio": 32,
+      "tema": 7
+    },
+    {
+      "id": 33,
+      "type": "img",
+      "header": "Ejercicio 33. Realizar movimientos de extensión y flexión con las dos rodillas juntas y un pie sobre el otro alternados. De 6 a 10 repeticiones.",
+      "img": "33.jpg",
+      "ejercicio": 33,
+      "tema": 7
+    },
+    {
+      "id": 34,
+      "type": "img",
+      "header": "Ejercicio 34. Posición inicial: De pie separando las piernas a la distancia de la anchura de los hombros.</br>Parado sobre un pie, la rodilla contraria recogida en 90 grados pegada al muslo, realizará movimientos sobre la punta de los dedos del pie apoyado, luego lo hará sobre los talones. Alternar con el otro pie. De 6 a 10 repeticiones.",
+      "img": "34.jpg",
+      "ejercicio": 34,
+      "tema": 8
+    },
+    {
+      "id": 35,
+      "type": "img",
+      "header": "Ejercicio 35. Posición sentada: Realizar movimientos de flexión y extensión de todos los dedos de los pies con fuerza, que sienta contracción de los músculos de las piernas. Seis repeticiones. </br>Realizar movimientos con fuerza de flexión y extensión de los pies.",
+      "img": "35.jpg",
+      "ejercicio": 35,
+      "tema": 8
+    },
+    {
+      "id": 36,
+      "type": "img",
+      "header": "Ejercicio 36. Posición sentada: Realizar movimientos laterales de los pies con fuerza.",
+      "img": "36.jpg",
+      "ejercicio": 36,
+      "tema": 8
+    },
+    {
+      "id": 37,
+      "type": "img",
+      "header": "Ejercicio 37. La hidroterapia aplicada con gimnasia acuática y marina. </br>Cuando se ha logrado un nivel de entrenamiento comprobado por sí mismo y avalado por los médicos de cabecera, podrá realizar los ejercicios anteriores más los recomendados a las personas de menos de 60 años y a partir de los 30 años como los que aparecen a continuación.</br><h2>Talasoterapia, aplicación del clima marino</h2></br>El ejercicio acuático en piscina cerrada o abierta, preferiblemente en el mar, es una forma de utilizar el clima marino, es un modo de realizar ejercicios aeróbicos.</br>Sentado en la orilla del mar, las olas chocarán con el cuerpo, se tratará de mantener el equilibrio; el cuerpo completo se movilizará en varias direcciones con esfuerzo físico, donde participan todas las articulaciones; los músculos se contraen, el golpe de las olas actúa como un masaje y los movimientos mecánicos de los miembros producirán un trabajo físico con un gasto energético importante que permite el intercambio con los nutrientes de las aguas marinas ricas en minerales, algas, microalgas y otras sustancias.</br>Se intercambian baños alternados, cubriendo el cuerpo completo con arena seca que aportará calor, mientras que al mojarse sentirá una sensación de frialdad. Cada baño de arena se mantendrá alternado por 5 minutos hasta completar 30 minutos, se retira la arena del cuerpo con el agua del mar.</br>Caminará sobre arena seca y mojada por un tiempo agradable no menos de 30 minutos para estimular la función cardiorrespiratoria.</br>Esta acción de la talasoterapia se realizará cuando los rayos so- lares estén inclinados (no sean perpendiculares) recomendable antes de las 10:00 a.m. o después de las 4 o 5 p.m. Durante todas las acciones de la gimnasia marina y terapéutica respirará llenan- do sus pulmones con aire puro no contaminado, rico en oxígeno, ozono y exhalando suavemente.",
+      "img": "37.jpg",
+      "ejercicio": 37,
+      "tema": 8
+    },
+    {
+      "id": 38,
+      "type": "img",
+      "header": "Ejercicio 38. Ejercicio de bajar y subir escaleras. </br> El ejercicio de bajar y subir escaleras entre 5 y 7 escalones. El tiempo de subir y bajar es de 2 o 3 minutos y descansar un minuto, repetir subir y bajar por tres veces más, descansando un minuto o más si se siente cansado y repetir el ejercicio nuevamente. Según se sienta con fuerza y entrenado, cada semana incrementará más la cantidad de escalones hasta que logre sentirse saludable, este ejercicio permite reducir el peso corporal y restablece el buen equilibrio cardiopulmonar. Repetir 3 a 5 veces por semana. </br>En un escalón de una escalera o usar una banqueta de baja altura realizar ejercicio de subir y bajar alternando los pies, durante 1 o 3 minutos, de 3 a 5 días a la semana.</br><h4>Algunos consejos:</h4></br>Cuando haya terminado todas las actividades físicas realizar masaje. Debe aplicarse de forma lenta y semiprofunda, buscando un efecto sedante.</br>Potenciar y entrenar la deambulación, con paseos al aire libre, en un entorno tranquilo y debe mostrar simpatía en un ambiente agradable con control del esfuerzo para evitar la fatiga o el cansancio.</br> Cada quien repetirá los ejercicios mostrados como mínimo de 3 a 5 veces por semana con una duración cada sesión de 30 minutos de acuerdo a la edad, y consciente de haber adquirido un estado fisco entrenado, podrá aumentar la frecuencia y tiempo.",
+      "img": "38.jpg",
+      "ejercicio": 38,
+      "tema": 9
+    }
+  ]
+}
+
+

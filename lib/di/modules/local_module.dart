@@ -1,6 +1,8 @@
 import 'dart:async';
 
 import 'package:boilerplate/data/local/constants/db_constants.dart';
+import 'package:boilerplate/data/local/datasources/contenido/contenido_datasource.dart';
+import 'package:boilerplate/data/local/datasources/ejercicio/ejercicio_datasorce.dart';
 import 'package:boilerplate/data/local/datasources/post/post_datasource.dart';
 import 'package:boilerplate/data/network/apis/posts/post_api.dart';
 import 'package:boilerplate/data/repository.dart';
@@ -78,6 +80,8 @@ class LocalModule extends NetworkModule {
     PostApi postApi,
     SharedPreferenceHelper preferenceHelper,
     PostDataSource postDataSource,
+    ContenidoDataSource contenidoDataSource,
+    EjercicioDataSource ejercicioDataSource,
   ) =>
-      Repository(postApi, preferenceHelper, postDataSource);
+      Repository(postApi, preferenceHelper, postDataSource, contenidoDataSource, ejercicioDataSource);
 }

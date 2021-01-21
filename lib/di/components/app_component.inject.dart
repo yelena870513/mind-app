@@ -1,3 +1,6 @@
+import 'package:boilerplate/data/local/datasources/contenido/contenido_datasource.dart';
+import 'package:boilerplate/data/local/datasources/ejercicio/ejercicio_datasorce.dart';
+
 import 'app_component.dart' as _i1;
 import '../modules/local_module.dart' as _i2;
 import '../modules/preference_module.dart' as _i3;
@@ -44,8 +47,12 @@ class AppComponent$Injector implements _i1.AppComponent {
 
   _i13.MyApp _createMyApp() => _i13.MyApp();
   _i10.Repository _createRepository() =>
-      _singletonRepository ??= _localModule.provideRepository(_createPostApi(),
-          _createSharedPreferenceHelper(), _createPostDataSource());
+      _singletonRepository ??= _localModule.provideRepository(
+          _createPostApi(),
+          _createSharedPreferenceHelper(),
+          _createPostDataSource(),
+          ContenidoDataSource(),
+          EjercicioDataSource());
   _i8.PostApi _createPostApi() => _singletonPostApi ??=
       _localModule.providePostApi(_createDioClient(), _createRestClient());
   _i6.DioClient _createDioClient() =>

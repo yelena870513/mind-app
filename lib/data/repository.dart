@@ -1,7 +1,11 @@
 import 'dart:async';
 
+import 'package:boilerplate/data/local/datasources/contenido/contenido_datasource.dart';
+import 'package:boilerplate/data/local/datasources/ejercicio/ejercicio_datasorce.dart';
 import 'package:boilerplate/data/local/datasources/post/post_datasource.dart';
 import 'package:boilerplate/data/sharedpref/shared_preference_helper.dart';
+import 'package:boilerplate/models/modelo/contenido.dart';
+import 'package:boilerplate/models/modelo/ejercicio.dart';
 import 'package:boilerplate/models/post/post.dart';
 import 'package:boilerplate/models/post/post_list.dart';
 import 'package:sembast/sembast.dart';
@@ -12,6 +16,8 @@ import 'network/apis/posts/post_api.dart';
 class Repository {
   // data source object
   final PostDataSource _postDataSource;
+  final ContenidoDataSource _contenidoDataSource;
+  final EjercicioDataSource _ejercicioDataSource;
 
   // api objects
   final PostApi _postApi;
@@ -20,7 +26,8 @@ class Repository {
   final SharedPreferenceHelper _sharedPrefsHelper;
 
   // constructor
-  Repository(this._postApi, this._sharedPrefsHelper, this._postDataSource);
+  Repository(this._postApi, this._sharedPrefsHelper, this._postDataSource,
+      this._contenidoDataSource, this._ejercicioDataSource);
 
   // Post: ---------------------------------------------------------------------
   Future<PostList> getPosts() async {
@@ -72,6 +79,14 @@ class Repository {
       .update(post)
       .then((id) => id)
       .catchError((error) => throw error);
+
+  Future<List<Contenido>> getContenidos() {
+    return _contenidoDataSource.getContenidos();
+  }
+
+  Future<List<Ejercicio>> getEjercicios() {
+    return _ejercicioDataSource.getEjercicios();
+  }
 
   // Theme: --------------------------------------------------------------------
   Future<void> changeBrightnessToDark(bool value) =>
