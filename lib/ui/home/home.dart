@@ -1,4 +1,7 @@
+import 'package:boilerplate/screens/fitness_screen.dart';
 import 'package:boilerplate/widgets/bounce_tab_bar.dart';
+import 'package:boilerplate/widgets/fitness_screen.dart';
+import 'package:boilerplate/widgets/running_view.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -22,6 +25,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    const int count = 5;
     return Scaffold(
       extendBody: true,
       body: IndexedStack(
@@ -34,8 +38,10 @@ class _HomeScreenState extends State<HomeScreen> {
             color: Colors.black12,
           ),
           Container(
-            color: Colors.lightGreenAccent,
+              color: Colors.lightGreenAccent,
+            child:  FitnessScreen(),
           ),
+
           Container(
             color: Colors.purple[100],
           )
@@ -51,12 +57,12 @@ class _HomeScreenState extends State<HomeScreen> {
         backgroundColor: Colors.purple,
         items: <Widget>[
           Icon(
-            Icons.person_outline,
+            Icons.home,
             color: Colors.white,
           ),
-          Icon(Icons.message, color: Colors.white),
-          Icon(Icons.print, color: Colors.white),
-          Icon(Icons.settings, color: Colors.white),
+          Icon(Icons.collections_bookmark, color: Colors.white),
+          Icon(Icons.accessibility, color: Colors.white),
+          Icon(Icons.people, color: Colors.white),
         ],
       ),
     );

@@ -19,4 +19,5 @@ class AppColors {
   static const mainSplashColor = Color(0xff5113AA);
   static const secundarySplashColor = Color(0xffBC53FA);
   static const backgroundColor = Color(0xffFCE7FE);
+  static const search = Color(0xffB9BABC);
 }
