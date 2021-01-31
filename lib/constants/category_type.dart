@@ -1,5 +1,12 @@
 enum CategoryType {
-  ui,
-  coding,
-  basic,
+  matutino,
+  vespertino,
+  hombros,
+  manos,
+  rodillas,
+  tronco,
+  tobillos,
+  acuaticos,
+  escalera,
+  contenido,
 }

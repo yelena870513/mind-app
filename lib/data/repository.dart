@@ -6,6 +6,7 @@ import 'package:boilerplate/data/local/datasources/post/post_datasource.dart';
 import 'package:boilerplate/data/sharedpref/shared_preference_helper.dart';
 import 'package:boilerplate/models/modelo/contenido.dart';
 import 'package:boilerplate/models/modelo/ejercicio.dart';
+import 'package:boilerplate/models/modelo/tema.dart';
 import 'package:boilerplate/models/post/post.dart';
 import 'package:boilerplate/models/post/post_list.dart';
 import 'package:sembast/sembast.dart';
@@ -82,6 +83,10 @@ class Repository {
 
   Future<List<Contenido>> getContenidos() {
     return _contenidoDataSource.getContenidos();
+  }
+
+  Future<List<Tema>> getTemas() {
+    return _contenidoDataSource.getTemas();
   }
 
   Future<List<Ejercicio>> getEjercicios() {

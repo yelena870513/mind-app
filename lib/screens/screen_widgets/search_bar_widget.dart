@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 class SearchBarWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return Padding(
       padding: const EdgeInsets.only(top: 8.0, left: 18),
       child: Row(
@@ -18,7 +17,7 @@ class SearchBarWidget extends StatelessWidget {
               padding: const EdgeInsets.only(top: 8, bottom: 8),
               child: Container(
                 decoration: BoxDecoration(
-                  color: Color(0xffF8FAFB),
+                  color: const Color(0xffF8FAFB),
                   borderRadius: const BorderRadius.only(
                     bottomRight: Radius.circular(13.0),
                     bottomLeft: Radius.circular(13.0),

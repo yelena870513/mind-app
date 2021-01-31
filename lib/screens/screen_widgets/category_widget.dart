@@ -1,14 +1,26 @@
 import 'package:boilerplate/constants/category_type.dart';
-import 'package:boilerplate/constants/colors.dart';
 import 'package:boilerplate/screens/screen_widgets/button_widget.dart';
+import 'package:boilerplate/stores/contenido/contenido_store.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import 'category_list_view.dart';
 
-class CategoryWidget extends StatelessWidget {
+class CategoryWidget extends StatefulWidget {
+  _CategoryState createState() => _CategoryState();
+}
+
+class _CategoryState extends State<CategoryWidget> {
+  ContenidoStore _contenidoStore;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _contenidoStore = Provider.of<ContenidoStore>(context);
+  }
+
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -24,34 +36,6 @@ class CategoryWidget extends StatelessWidget {
               letterSpacing: 0.27,
               color: Colors.orange,
             ),
-          ),
-        ),
-        const SizedBox(
-          height: 16,
-        ),
-        Padding(
-          padding: const EdgeInsets.only(left: 16, right: 16),
-          child: Row(
-            children: <Widget>[
-              ButtonWidget(
-                categoryTypeData: CategoryType.ui,
-                isSelected: true,
-              ),
-              const SizedBox(
-                width: 16,
-              ),
-              ButtonWidget(
-                categoryTypeData: CategoryType.coding,
-                isSelected: false,
-              ),
-              const SizedBox(
-                width: 16,
-              ),
-              ButtonWidget(
-                categoryTypeData: CategoryType.basic,
-                isSelected: false,
-              ),
-            ],
           ),
         ),
         const SizedBox(

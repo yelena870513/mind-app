@@ -1,10 +1,26 @@
 import 'package:boilerplate/screens/screen_widgets/popular_course_list_view.dart';
+import 'package:boilerplate/stores/contenido/contenido_store.dart';
+import 'package:boilerplate/stores/ejercicio/ejercicio_store.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-class PopularCourseWidget extends StatelessWidget {
+class PopularCourseWidget extends StatefulWidget {
+  _PopularCourseWidget createState() => _PopularCourseWidget();
+}
+
+class _PopularCourseWidget extends State<PopularCourseWidget> {
+  ContenidoStore _contenidoStore;
+  EjercicioStore _ejercicioStore;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _contenidoStore ??= Provider.of<ContenidoStore>(context);
+    _ejercicioStore ??= Provider.of<EjercicioStore>(context);
+  }
+
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return Padding(
       padding: const EdgeInsets.only(top: 8.0, left: 18, right: 16),
       child: Column(
@@ -12,7 +28,7 @@ class PopularCourseWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Text(
-            'Popular Course',
+            'Contenidos',
             textAlign: TextAlign.left,
             style: TextStyle(
               fontWeight: FontWeight.w600,
@@ -23,7 +39,13 @@ class PopularCourseWidget extends StatelessWidget {
           ),
           Flexible(
             child: PopularCourseListView(
-              callBack: () {},
+              callBack: () {
+                if (_contenidoStore != null) {
+                  _contenidoStore.getTemas();
+                  _contenidoStore.getContenidos();
+                  _ejercicioStore.getEjercicios();
+                }
+              },
             ),
           )
         ],

@@ -69,6 +69,14 @@ class LocalModule extends NetworkModule {
   @singleton
   PostDataSource providePostDataSource() => PostDataSource(database);
 
+  @provide
+  @singleton
+  ContenidoDataSource provideContenidoDataSource() => ContenidoDataSource();
+
+  @provide
+  @singleton
+  EjercicioDataSource provideEjercicioDataSource() => EjercicioDataSource();
+
   // DataSources End:-----------------------------------------------------------
 
   /// A singleton repository provider.

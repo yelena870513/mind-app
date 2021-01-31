@@ -14,7 +14,7 @@ class _FitnessScreenState extends State<FitnessScreen> {
   Widget build(BuildContext context) {
     // TODO: implement build
     return Scaffold(
-      backgroundColor: const Color(0xFF00B6F0),
+      backgroundColor: const Color(0xFFFFFFFF),
       body: Column(
         children: <Widget>[
           SizedBox(

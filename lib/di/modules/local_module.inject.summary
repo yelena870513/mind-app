@@ -150,6 +150,34 @@
             "dependencies": []
           },
           {
+            "name": "provideContenidoDataSource",
+            "kind": "method",
+            "injectedType": {
+              "lookupKey": {
+                "root": "asset:boilerplate/lib/data/local/datasources/contenido/contenido_datasource.dart#ContenidoDataSource",
+                "qualifier": null
+              },
+              "isProvider": false
+            },
+            "singleton": true,
+            "asynchronous": false,
+            "dependencies": []
+          },
+          {
+            "name": "provideEjercicioDataSource",
+            "kind": "method",
+            "injectedType": {
+              "lookupKey": {
+                "root": "asset:boilerplate/lib/data/local/datasources/ejercicio/ejercicio_datasorce.dart#EjercicioDataSource",
+                "qualifier": null
+              },
+              "isProvider": false
+            },
+            "singleton": true,
+            "asynchronous": false,
+            "dependencies": []
+          },
+          {
             "name": "provideRepository",
             "kind": "method",
             "injectedType": {
@@ -179,6 +207,20 @@
               {
                 "lookupKey": {
                   "root": "asset:boilerplate/lib/data/local/datasources/post/post_datasource.dart#PostDataSource",
+                  "qualifier": null
+                },
+                "isProvider": false
+              },
+              {
+                "lookupKey": {
+                  "root": "asset:boilerplate/lib/data/local/datasources/contenido/contenido_datasource.dart#ContenidoDataSource",
+                  "qualifier": null
+                },
+                "isProvider": false
+              },
+              {
+                "lookupKey": {
+                  "root": "asset:boilerplate/lib/data/local/datasources/ejercicio/ejercicio_datasorce.dart#EjercicioDataSource",
                   "qualifier": null
                 },
                 "isProvider": false

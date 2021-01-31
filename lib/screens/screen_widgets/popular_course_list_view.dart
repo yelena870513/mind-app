@@ -1,11 +1,16 @@
-
-import 'package:boilerplate/models/modelo/category.dart';
+import 'package:boilerplate/models/modelo/contenido.dart';
+import 'package:boilerplate/models/modelo/ejercicio.dart';
+import 'package:boilerplate/stores/contenido/contenido_store.dart';
+import 'package:boilerplate/stores/ejercicio/ejercicio_store.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:provider/provider.dart';
 
 class PopularCourseListView extends StatefulWidget {
   const PopularCourseListView({Key key, this.callBack}) : super(key: key);
 
   final Function callBack;
+
   @override
   _PopularCourseListViewState createState() => _PopularCourseListViewState();
 }
@@ -13,6 +18,9 @@ class PopularCourseListView extends StatefulWidget {
 class _PopularCourseListViewState extends State<PopularCourseListView>
     with TickerProviderStateMixin {
   AnimationController animationController;
+  ContenidoStore _contenidoStore;
+  EjercicioStore _ejercicioStore;
+
   @override
   void initState() {
     animationController = AnimationController(
@@ -20,7 +28,19 @@ class _PopularCourseListViewState extends State<PopularCourseListView>
     super.initState();
   }
 
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _contenidoStore ??= Provider.of<ContenidoStore>(context);
+    _ejercicioStore ??= Provider.of<EjercicioStore>(context);
+  }
+
   Future<bool> getData() async {
+    if (_contenidoStore != null) {
+      _contenidoStore.getContenidos();
+      _contenidoStore.getTemas();
+      _ejercicioStore.getEjercicios();
+    }
     await Future<dynamic>.delayed(const Duration(milliseconds: 200));
     return true;
   }
@@ -35,39 +55,48 @@ class _PopularCourseListViewState extends State<PopularCourseListView>
           if (!snapshot.hasData) {
             return const SizedBox();
           } else {
-            return GridView(
-              padding: const EdgeInsets.all(8),
-              physics: const BouncingScrollPhysics(),
-              scrollDirection: Axis.vertical,
-              children: List<Widget>.generate(
-                Category.popularCourseList.length,
-                (int index) {
-                  final int count = Category.popularCourseList.length;
-                  final Animation<double> animation =
-                      Tween<double>(begin: 0.0, end: 1.0).animate(
-                    CurvedAnimation(
-                      parent: animationController,
-                      curve: Interval((1 / count) * index, 1.0,
-                          curve: Curves.fastOutSlowIn),
+            return Observer(
+              builder: (context) {
+                if (_ejercicioStore.selectedEjerciciosCount > 0) {
+                  return GridView(
+                    padding: const EdgeInsets.all(8),
+                    physics: const BouncingScrollPhysics(),
+                    scrollDirection: Axis.vertical,
+                    children: List<Widget>.generate(
+                      _ejercicioStore.selectedEjercicios.length,
+                      (int index) {
+                        final int count = _ejercicioStore.selectedEjercicios.length;
+                        final Animation<double> animation =
+                            Tween<double>(begin: 0.0, end: 1.0).animate(
+                          CurvedAnimation(
+                            parent: animationController,
+                            curve: Interval((1 / count) * index, 1.0,
+                                curve: Curves.fastOutSlowIn),
+                          ),
+                        );
+                        animationController.forward();
+                        return CategoryView(
+                          callback: () {
+                            widget.callBack();
+                          },
+                          category: _ejercicioStore.selectedEjercicios[index],
+                          animation: animation,
+                          animationController: animationController,
+                        );
+                      },
+                    ),
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      mainAxisSpacing: 32.0,
+                      crossAxisSpacing: 32.0,
+                      childAspectRatio: 0.8,
                     ),
                   );
-                  animationController.forward();
-                  return CategoryView(
-                    callback: () {
-                      widget.callBack();
-                    },
-                    category: Category.popularCourseList[index],
-                    animation: animation,
-                    animationController: animationController,
-                  );
-                },
-              ),
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                mainAxisSpacing: 32.0,
-                crossAxisSpacing: 32.0,
-                childAspectRatio: 0.8,
-              ),
+                } else {
+                  return SizedBox.shrink();
+                }
+              },
             );
           }
         },
@@ -86,7 +115,7 @@ class CategoryView extends StatelessWidget {
       : super(key: key);
 
   final VoidCallback callback;
-  final Category category;
+  final Ejercicio category;
   final AnimationController animationController;
   final Animation<dynamic> animation;
 
@@ -116,7 +145,7 @@ class CategoryView extends StatelessWidget {
                           Expanded(
                             child: Container(
                               decoration: BoxDecoration(
-                                color: Color(0xffF8FAFB),
+                                color: const Color(0xffF8FAFB),
                                 borderRadius: const BorderRadius.all(
                                     Radius.circular(16.0)),
                                 // border: new Border.all(
@@ -128,17 +157,19 @@ class CategoryView extends StatelessWidget {
                                     child: Container(
                                       child: Column(
                                         children: <Widget>[
-                                          Padding(
-                                            padding: const EdgeInsets.only(
-                                                top: 16, left: 16, right: 16),
-                                            child: Text(
-                                              category.title,
-                                              textAlign: TextAlign.left,
-                                              style: TextStyle(
-                                                fontWeight: FontWeight.w600,
-                                                fontSize: 16,
-                                                letterSpacing: 0.27,
-                                                color: Colors.black87,
+                                          Expanded(
+                                            child: Padding(
+                                              padding: const EdgeInsets.only(
+                                                  top: 16, left: 16, right: 16),
+                                              child: Text(
+                                                category.header,
+                                                textAlign: TextAlign.left,
+                                                style: TextStyle(
+                                                  fontWeight: FontWeight.w600,
+                                                  fontSize: 16,
+                                                  letterSpacing: 0.27,
+                                                  color: Colors.black87,
+                                                ),
                                               ),
                                             ),
                                           ),
@@ -156,7 +187,7 @@ class CategoryView extends StatelessWidget {
                                                   CrossAxisAlignment.center,
                                               children: <Widget>[
                                                 Text(
-                                                  '${category.lessonCount} lesson',
+                                                  '${category.header.length} lesson',
                                                   textAlign: TextAlign.left,
                                                   style: TextStyle(
                                                     fontWeight: FontWeight.w200,
@@ -169,7 +200,7 @@ class CategoryView extends StatelessWidget {
                                                   child: Row(
                                                     children: <Widget>[
                                                       Text(
-                                                        '${category.rating}',
+                                                        '${category.tema}',
                                                         textAlign:
                                                             TextAlign.left,
                                                         style: TextStyle(
@@ -218,8 +249,7 @@ class CategoryView extends StatelessWidget {
                                 const BorderRadius.all(Radius.circular(16.0)),
                             boxShadow: <BoxShadow>[
                               BoxShadow(
-                                  color: Colors.grey
-                                      .withOpacity(0.2),
+                                  color: Colors.grey.withOpacity(0.2),
                                   offset: const Offset(0.0, 0.0),
                                   blurRadius: 6.0),
                             ],
@@ -229,7 +259,8 @@ class CategoryView extends StatelessWidget {
                                 const BorderRadius.all(Radius.circular(16.0)),
                             child: AspectRatio(
                                 aspectRatio: 1.28,
-                                child: Image.asset(category.imagePath)),
+                                child: Image.asset(
+                                    'assets/images/interFace2.png')),
                           ),
                         ),
                       ),
