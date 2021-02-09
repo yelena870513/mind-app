@@ -1,4 +1,5 @@
 import 'package:boilerplate/screens/fitness_screen.dart';
+import 'package:boilerplate/screens/team_time_line.dart';
 import 'package:boilerplate/widgets/bounce_tab_bar.dart';
 import 'package:boilerplate/widgets/fitness_screen.dart';
 import 'package:boilerplate/widgets/running_view.dart';
@@ -43,7 +44,8 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
 
           Container(
-            color: Colors.purple[100],
+            color: Colors.green[100],
+            child: TeamTimeLine(),
           )
         ],
       ),
