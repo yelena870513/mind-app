@@ -88,7 +88,7 @@ class _BounceTabBarState extends State<BounceTabBar>
                 decoration: BoxDecoration(
                     color: widget.backgroundColor,
                     borderRadius:
-                        BorderRadius.vertical(top: Radius.circular(20))),
+                        BorderRadius.only(topRight: Radius.circular(20),topLeft: Radius.circular(20))),
                 child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: List.generate(widget.items.length, (index) {
@@ -144,7 +144,7 @@ class _CircleItemPainter extends CustomPainter {
           center,
           radius,
           Paint()
-            ..color = Colors.purple[100]
+            ..color = Color(0xff8d0a9b)
             ..style = PaintingStyle.stroke
             ..strokeWidth = currentStrokeWidth);
     }

@@ -2,9 +2,12 @@ import 'dart:async';
 
 import 'package:boilerplate/constants/colors.dart';
 import 'package:boilerplate/routes.dart';
+import 'package:boilerplate/stores/contenido/contenido_store.dart';
+import 'package:boilerplate/stores/ejercicio/ejercicio_store.dart';
 import 'package:boilerplate/widgets/splash_animation_counter.dart';
 import 'package:boilerplate/widgets/splash_animation_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -16,6 +19,8 @@ class _SplashScreenState extends State<SplashScreen>
   AnimationController _animationController;
   Animation<double> _progressAnimation;
   Animation<double> _cloudOutAnimation;
+  ContenidoStore _contenidoStore;
+  EjercicioStore _ejercicioStore;
 
   @override
   void initState() {
@@ -35,27 +40,50 @@ class _SplashScreenState extends State<SplashScreen>
   }
 
   @override
-  void disposed() {
+  void dispose() {
     _animationController.dispose();
     super.dispose();
   }
 
   @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _contenidoStore = Provider.of<ContenidoStore>(context);
+    _ejercicioStore = Provider.of<EjercicioStore>(context);
+  }
+
+  Future<bool> getData() async {
+    await _contenidoStore.getContenidos();
+    await _contenidoStore.getTemas();
+    await _ejercicioStore.getEjercicios();
+    await _ejercicioStore.getTemas();
+    return true;
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        backgroundColor: AppColors.backgroundColor,
-        body: Stack(
-          children: <Widget>[
-            SplashAnimationCounter(
-              progressAnimation: _progressAnimation,
-              cloudOutAnimation: _cloudOutAnimation,
-            ),
-            SplashAnimationWidget(
-              progressAnimation: _progressAnimation,
-              cloudOutAnimation: _cloudOutAnimation,
-            )
-          ],
-        ));
+    return FutureBuilder<bool>(
+        future: getData(),
+        builder: (BuildContext context, AsyncSnapshot snapshot) {
+          if (!snapshot.hasData) {
+            return SizedBox.shrink();
+          } else {
+            return Scaffold(
+                backgroundColor: AppColors.backgroundColor,
+                body: Stack(
+                  children: <Widget>[
+                    SplashAnimationCounter(
+                      progressAnimation: _progressAnimation,
+                      cloudOutAnimation: _cloudOutAnimation,
+                    ),
+                    SplashAnimationWidget(
+                      progressAnimation: _progressAnimation,
+                      cloudOutAnimation: _cloudOutAnimation,
+                    )
+                  ],
+                ));
+          }
+        });
   }
 
   startTimer() {

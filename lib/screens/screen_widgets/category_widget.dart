@@ -1,8 +1,4 @@
-import 'package:boilerplate/constants/category_type.dart';
-import 'package:boilerplate/screens/screen_widgets/button_widget.dart';
-import 'package:boilerplate/stores/contenido/contenido_store.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 import 'category_list_view.dart';
 
@@ -11,12 +7,9 @@ class CategoryWidget extends StatefulWidget {
 }
 
 class _CategoryState extends State<CategoryWidget> {
-  ContenidoStore _contenidoStore;
-
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    _contenidoStore = Provider.of<ContenidoStore>(context);
   }
 
   @override

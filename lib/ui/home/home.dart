@@ -1,8 +1,11 @@
+import 'package:boilerplate/screens/contenido_screen.dart';
+import 'package:boilerplate/screens/credito_screen.dart';
+import 'package:boilerplate/screens/ejercicios_screen.dart';
 import 'package:boilerplate/screens/fitness_screen.dart';
-import 'package:boilerplate/screens/team_time_line.dart';
+import 'package:boilerplate/screens/screen_widgets/creditos_screen.dart';
+import 'package:boilerplate/screens/tema_screen.dart';
 import 'package:boilerplate/widgets/bounce_tab_bar.dart';
-import 'package:boilerplate/widgets/fitness_screen.dart';
-import 'package:boilerplate/widgets/running_view.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -26,26 +29,41 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    const int count = 5;
+    final double toolbarHeight = kToolbarHeight + 50;
     return Scaffold(
       extendBody: true,
       body: IndexedStack(
         index: _currentIndex,
         children: <Widget>[
           Container(
-            color: Colors.red[200],
+            decoration: BoxDecoration(
+                color: Colors.white10,
+                borderRadius:
+                    BorderRadius.only(bottomLeft: Radius.circular(20))),
+            child: Stack(
+              children: <Widget>[
+                Positioned(
+                  child: Container(
+                    width: MediaQuery.of(context).size.width,
+                    height: MediaQuery.of(context).size.height,
+                    child: Image.asset(
+                      'assets/images/fondo.png',
+                      fit: BoxFit.contain,
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
+          ContenidoScreen(toolbarHeight),
           Container(
-            color: Colors.black12,
-          ),
-          Container(
-              color: Colors.lightGreenAccent,
-            child:  FitnessScreen(),
+            color: Colors.white,
+            child: TemaScreen(toolbarHeight),
           ),
 
           Container(
-            color: Colors.green[100],
-            child: TeamTimeLine(),
+            color: Colors.white,
+            child: CreditoScreen(toolbarHeight: toolbarHeight),
           )
         ],
       ),
@@ -56,15 +74,28 @@ class _HomeScreenState extends State<HomeScreen> {
             _currentIndex = index;
           });
         },
-        backgroundColor: Colors.purple,
+        backgroundColor: const Color(0xff450075),
         items: <Widget>[
-          Icon(
-            Icons.home,
-            color: Colors.white,
+          InkWell(
+            child: Image.asset(
+              'assets/images/home.png',
+            ),
           ),
-          Icon(Icons.collections_bookmark, color: Colors.white),
-          Icon(Icons.accessibility, color: Colors.white),
-          Icon(Icons.people, color: Colors.white),
+          InkWell(
+            child: Image.asset(
+              'assets/images/contenido.png',
+            ),
+          ),
+          InkWell(
+            child: Image.asset(
+              'assets/images/ejercicio.png',
+            ),
+          ),
+          InkWell(
+            child: Image.asset(
+              'assets/images/creditos.png',
+            ),
+          )
         ],
       ),
     );

@@ -37,12 +37,6 @@ mixin _$ContenidoStore on _ContenidoStore, Store {
   @override
   List<Tema> get temas =>
       (_$temasComputed ??= Computed<List<Tema>>(() => super.temas)).value;
-  Computed<List<Tema>> _$temasEjerciciosComputed;
-
-  @override
-  List<Tema> get temasEjercicios => (_$temasEjerciciosComputed ??=
-          Computed<List<Tema>>(() => super.temasEjercicios))
-      .value;
   Computed<Tema> _$selectedTemaComputed;
 
   @override
@@ -61,6 +55,12 @@ mixin _$ContenidoStore on _ContenidoStore, Store {
   int get selectedContenidosCount => (_$selectedContenidosCountComputed ??=
           Computed<int>(() => super.selectedContenidosCount))
       .value;
+  Computed<int> _$contenidosCountComputed;
+
+  @override
+  int get contenidosCount =>
+      (_$contenidosCountComputed ??= Computed<int>(() => super.contenidosCount))
+          .value;
 
   final _$successAtom = Atom(name: '_ContenidoStore.success');
 
@@ -171,7 +171,7 @@ mixin _$ContenidoStore on _ContenidoStore, Store {
       ActionController(name: '_ContenidoStore');
 
   @override
-  void getContenidos() {
+  Future<List<Contenido>> getContenidos() {
     final _$actionInfo = _$_ContenidoStoreActionController.startAction();
     try {
       return super.getContenidos();
@@ -181,7 +181,7 @@ mixin _$ContenidoStore on _ContenidoStore, Store {
   }
 
   @override
-  void getTemas() {
+  Future<List<Tema>> getTemas() {
     final _$actionInfo = _$_ContenidoStoreActionController.startAction();
     try {
       return super.getTemas();

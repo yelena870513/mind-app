@@ -57,13 +57,6 @@ abstract class _ContenidoStore with Store {
   }
 
   @computed
-  List<Tema> get temasEjercicios {
-    return _temas.where((Tema tema){
-      return tema.id != 1;
-    }).toList();
-  }
-
-  @computed
   Tema get selectedTema {
     return _selectedTema;
   }
@@ -77,17 +70,25 @@ abstract class _ContenidoStore with Store {
 
   @computed
   int get selectedContenidosCount {
-    return _contenidos.where((Contenido c) {
-      return c.tema.id == selectedTema.id;
-    }).toList().length;
+    return _contenidos
+        .where((Contenido c) {
+          return c.tema.id == selectedTema.id;
+        })
+        .toList()
+        .length;
+  }
+
+  @computed
+  int get contenidosCount {
+    return _contenidos.length;
   }
 
   @action
-  void getContenidos() {
+  Future<List<Contenido>> getContenidos() {
     final future = _repository.getContenidos();
     contenidoResponse = ObservableFuture(future);
 
-    future.then((contenidos) {
+    return future.then((contenidos) {
       this._contenidos = contenidos.toList();
       errorMessage = '';
     }).catchError((error) {
@@ -96,14 +97,14 @@ abstract class _ContenidoStore with Store {
   }
 
   @action
-  void getTemas() {
-    final future = _repository.getTemas();
+  Future<List<Tema>> getTemas() {
+    final future = _repository.getContenidoTemas();
     temaResponse = ObservableFuture(future);
 
-    future.then((temas) {
+    return future.then((temas) {
       this._temas = temas.toList();
       if (selectedTema == null) {
-        setSelectedTema(this._temas[1]);
+        setSelectedTema(this._temas[0]);
       }
       errorMessage = '';
     }).catchError((error) {

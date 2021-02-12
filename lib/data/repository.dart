@@ -85,12 +85,16 @@ class Repository {
     return _contenidoDataSource.getContenidos();
   }
 
-  Future<List<Tema>> getTemas() {
+  Future<List<Tema>> getContenidoTemas() {
     return _contenidoDataSource.getTemas();
   }
 
   Future<List<Ejercicio>> getEjercicios() {
     return _ejercicioDataSource.getEjercicios();
+  }
+
+  Future<List<Tema>> getEjercicioTemas() {
+    return _ejercicioDataSource.getTemas();
   }
 
   // Theme: --------------------------------------------------------------------

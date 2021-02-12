@@ -1,6 +1,7 @@
 import 'package:boilerplate/screens/screen_widgets/popular_course_list_view.dart';
 import 'package:boilerplate/stores/contenido/contenido_store.dart';
 import 'package:boilerplate/stores/ejercicio/ejercicio_store.dart';
+import 'package:boilerplate/ui/ejercicio/ejercicio_detail.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -40,11 +41,13 @@ class _PopularCourseWidget extends State<PopularCourseWidget> {
           Flexible(
             child: PopularCourseListView(
               callBack: () {
-                if (_contenidoStore != null) {
-                  _contenidoStore.getTemas();
-                  _contenidoStore.getContenidos();
-                  _ejercicioStore.getEjercicios();
-                }
+                Navigator.of(context).push(PageRouteBuilder(
+                    pageBuilder: (context, animation1, animation2) {
+                  return FadeTransition(
+                    opacity: animation1,
+                    child: EjercicioVista(),
+                  );
+                }));
               },
             ),
           )

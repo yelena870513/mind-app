@@ -1,9 +1,9 @@
-import 'package:boilerplate/models/modelo/contenido.dart';
 import 'package:boilerplate/models/modelo/ejercicio.dart';
 import 'package:boilerplate/stores/contenido/contenido_store.dart';
 import 'package:boilerplate/stores/ejercicio/ejercicio_store.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:mobx/mobx.dart';
 import 'package:provider/provider.dart';
 
 class PopularCourseListView extends StatefulWidget {
@@ -20,6 +20,7 @@ class _PopularCourseListViewState extends State<PopularCourseListView>
   AnimationController animationController;
   ContenidoStore _contenidoStore;
   EjercicioStore _ejercicioStore;
+  List<ReactionDisposer> _disposers;
 
   @override
   void initState() {
@@ -33,14 +34,21 @@ class _PopularCourseListViewState extends State<PopularCourseListView>
     super.didChangeDependencies();
     _contenidoStore ??= Provider.of<ContenidoStore>(context);
     _ejercicioStore ??= Provider.of<EjercicioStore>(context);
+    _disposers ??= [
+      reaction((_) => _ejercicioStore.selectedTema.id, (_) {
+        animationController.forward(from: 0.0);
+      })
+    ];
+  }
+
+  @override
+  void dispose() {
+    _disposers.forEach((d) => d());
+    animationController.dispose();
+    super.dispose();
   }
 
   Future<bool> getData() async {
-    if (_contenidoStore != null) {
-      _contenidoStore.getContenidos();
-      _contenidoStore.getTemas();
-      _ejercicioStore.getEjercicios();
-    }
     await Future<dynamic>.delayed(const Duration(milliseconds: 200));
     return true;
   }
@@ -65,18 +73,22 @@ class _PopularCourseListViewState extends State<PopularCourseListView>
                     children: List<Widget>.generate(
                       _ejercicioStore.selectedEjercicios.length,
                       (int index) {
-                        final int count = _ejercicioStore.selectedEjercicios.length;
+                        final int count =
+                            _ejercicioStore.selectedEjercicios.length;
                         final Animation<double> animation =
                             Tween<double>(begin: 0.0, end: 1.0).animate(
                           CurvedAnimation(
-                            parent: animationController,
-                            curve: Interval((1 / count) * index, 1.0,
-                                curve: Curves.fastOutSlowIn),
-                          ),
+                              parent: animationController,
+                              curve: Interval((1 / count) * index, 1.0,
+                                  curve: Curves.fastOutSlowIn),
+                              reverseCurve: Interval(1.0, (1 / count) * index,
+                                  curve: Curves.fastLinearToSlowEaseIn)),
                         );
                         animationController.forward();
                         return CategoryView(
                           callback: () {
+                            _ejercicioStore.setSelectedEjercicio(
+                                _ejercicioStore.selectedEjercicios[index]);
                             widget.callBack();
                           },
                           category: _ejercicioStore.selectedEjercicios[index],

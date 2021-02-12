@@ -87,7 +87,7 @@ class __CloudWordBubblePainter extends CustomPainter {
       TextSpan span = new TextSpan(
           style: new TextStyle(
               color: _bubble.color,
-              fontFamily: FontFamily.productSans,
+              fontFamily: FontFamily.latto,
               fontSize: 18,
               fontWeight: FontWeight.w700),
           text: _bubble.word);

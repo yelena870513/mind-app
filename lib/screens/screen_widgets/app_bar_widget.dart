@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:validators/validators.dart';
 
 class AppBarWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return Padding(
-      padding: const EdgeInsets.only(top: 8.0, left: 18, right: 18),
+      padding: const EdgeInsets.only(top: 0, left: 18, right: 18, bottom: 10),
       child: Row(
         children: <Widget>[
           Expanded(
@@ -14,33 +14,29 @@ class AppBarWidget extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Text(
-                  'Choose your',
+                  '   Enfermedad'.toUpperCase(),
                   textAlign: TextAlign.left,
                   style: TextStyle(
                     fontWeight: FontWeight.w400,
-                    fontSize: 14,
+                    fontSize: 22,
                     letterSpacing: 0.2,
-                    color: Colors.grey,
+                    color: Colors.white,
+                    fontFamily: 'Tippa',
                   ),
                 ),
                 Text(
-                  'Design Course',
+                  ' de Alzheimer'.toUpperCase(),
                   textAlign: TextAlign.left,
                   style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 22,
-                    letterSpacing: 0.27,
-                    color: Colors.black,
-                  ),
+                      fontSize: 22,
+                      letterSpacing: 0.27,
+                      color: Colors.white,
+                      fontFamily: 'Tippa'),
                 ),
               ],
             ),
           ),
-          Container(
-            width: 60,
-            height: 60,
-            child: Image.asset('assets/images/userImage.png'),
-          )
+          
         ],
       ),
     );

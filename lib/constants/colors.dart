@@ -18,6 +18,6 @@ class AppColors {
 
   static const mainSplashColor = Color(0xff5113AA);
   static const secundarySplashColor = Color(0xffBC53FA);
-  static const backgroundColor = Color(0xffFCE7FE);
+  static const backgroundColor = Color.fromRGBO(69, 0, 117, 0.85);
   static const search = Color(0xffB9BABC);
 }

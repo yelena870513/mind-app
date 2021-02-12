@@ -61,6 +61,20 @@ dependencies:
   # Material Dialog
   material_dialog: ^0.0.9
 
+  # Flutter HTML
+  flutter_html: ^1.0.0-pre.1
+  universal_html: ^1.2.2
+
+  # Responsive components
+  flutter_screenutil: ^3.1.0
+  auto_size_text: ^2.1.0
+
+  # Font Awesome
+  font_awesome_flutter: 8.5.0
+
+  # Expandable
+  expandable: ^4.1.4
+
   # Dependency injection
   inject:
     git:
@@ -130,6 +144,15 @@ flutter:
       style: italic
     - asset: assets/fonts/Product-Sans-Bold.ttf
       weight: 700
+  - family: Latto
+    fonts:
+    - asset: assets/fonts/Lato-Light.ttf
+    - asset: assets/fonts/Lato-Bold.ttf
+      weight: 700
+  - family: Tippa
+    fonts:
+    - asset: assets/fonts/tippa.ttf
+
 
   # For details regarding fonts from package dependencies,
   # see https://flutter.io/custom-fonts/#from-packages

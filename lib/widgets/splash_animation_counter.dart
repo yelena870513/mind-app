@@ -43,9 +43,10 @@ class SplashAnimationCounter extends StatelessWidget {
                     'Cargando aplicación...',
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                        color: Colors.black,
+                        color: Colors.white,
                         fontSize: 17,
-                        fontWeight: FontWeight.w400),
+                        fontWeight: FontWeight.w400,
+                        fontFamily: FontFamily.latto),
                   ),
                   const SizedBox(height: 10),
                   Expanded(
