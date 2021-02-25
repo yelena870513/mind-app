@@ -106,11 +106,15 @@ class __CloudWordBubblePainter extends CustomPainter {
 
 class SplashAnimationWidget extends StatelessWidget {
   SplashAnimationWidget(
-      {Key key, this.progressAnimation, this.cloudOutAnimation})
+      {Key key,
+      this.progressAnimation,
+      this.cloudOutAnimation,
+      this.splashAnimation})
       : super(key: key);
 
   final Animation<double> progressAnimation;
   final Animation<double> cloudOutAnimation;
+  final Animation<double> splashAnimation;
   final bubbles = List<_WordBubble>.generate(100, (index) {
     final size = math.Random().nextInt(20) + 5.0;
     final speed = math.Random().nextInt(50) + 1.0;
@@ -137,7 +141,8 @@ class SplashAnimationWidget extends StatelessWidget {
     final queryData = MediaQuery.of(context).size;
 
     return AnimatedBuilder(
-        animation: Listenable.merge([progressAnimation, cloudOutAnimation]),
+        animation: Listenable.merge(
+            [progressAnimation, cloudOutAnimation, splashAnimation]),
         builder: (context, snapshot) {
           final size = queryData.width * 0.5;
           final circleSize = size *
@@ -211,7 +216,28 @@ class SplashAnimationWidget extends StatelessWidget {
                       ),
                     ),
                   ),
-                )
+                ),
+                AnimatedPositioned(
+                  height: queryData.height * 0.8,
+                  width: queryData.width * 0.8,
+                  top: queryData.height * 0.8,
+                  left: 20,
+                  duration: Duration(seconds: 2),
+                  curve: Interval(0.1, 0.6, curve: Curves.linear),
+                  child: AnimatedBuilder(
+                    child: Image.asset(
+                      'assets/images/splash.png',
+                    ),
+                    animation: splashAnimation,
+                    builder: (context, child) {
+                      return AnimatedOpacity(
+                        child: child,
+                        duration: Duration(milliseconds: 1),
+                        opacity: splashAnimation.value,
+                      );
+                    },
+                  ),
+                ),
               ],
             ),
           );

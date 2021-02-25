@@ -37,6 +37,15 @@ abstract class _ContenidoStore with Store {
   @observable
   List<Tema> _temas = [];
 
+  @observable
+  String _searchTerm = '';
+
+  @observable
+  bool _hidePlaceholder = false;
+
+  @computed
+  bool get hidePlaceholder => _hidePlaceholder;
+
   @computed
   bool get loadingContenido => contenidoResponse.status == FutureStatus.pending;
 
@@ -48,7 +57,45 @@ abstract class _ContenidoStore with Store {
 
   @computed
   List<Contenido> get contenidos {
-    return _contenidos.toList();
+    if (_searchTerm.length < 3) {
+      return _contenidos.toList();
+    } else {
+      List<Contenido> searchResults = List<Contenido>();
+      String cleanSearchValue = _searchTerm
+          .toLowerCase()
+          .replaceAll('á', 'a')
+          .replaceAll('á', 'a')
+          .replaceAll('í', 'i')
+          .replaceAll('ó', 'o')
+          .replaceAll('ú', 'u');
+
+      _contenidos.forEach((Contenido c) {
+        final RegExp exp =
+        RegExp(r"<\/?[^>]+(>|$)", multiLine: true, caseSensitive: false);
+        final String texto = c.texto
+            .toLowerCase()
+            .replaceAll(exp, '')
+            .replaceAll(RegExp(r'&aacute;'), 'a')
+            .replaceAll(RegExp(r'&eacute;'), 'e')
+            .replaceAll(RegExp(r'&iacute;'), 'i')
+            .replaceAll(RegExp(r'&oacute;'), 'o')
+            .replaceAll(RegExp(r'&uacute;'), 'u')
+            .replaceAll(RegExp(r'&ntilde;'), 'ñ')
+            .replaceAll('á', 'a')
+            .replaceAll('á', 'a')
+            .replaceAll('í', 'i')
+            .replaceAll('ó', 'o')
+            .replaceAll('ú', 'u');
+
+
+        if (texto.contains(cleanSearchValue)) {
+          if (!searchResults.contains(c)) {
+            searchResults.add(c);
+          }
+        }
+      });
+      return searchResults;
+    }
   }
 
   @computed
@@ -80,7 +127,12 @@ abstract class _ContenidoStore with Store {
 
   @computed
   int get contenidosCount {
-    return _contenidos.length;
+    return contenidos.length;
+  }
+
+  @computed
+  String get searchTerm {
+    return _searchTerm;
   }
 
   @action
@@ -94,6 +146,11 @@ abstract class _ContenidoStore with Store {
     }).catchError((error) {
       errorMessage = error.toString();
     });
+  }
+
+  @action
+  void hidenPlaceholder(bool value){
+    _hidePlaceholder = value;
   }
 
   @action
@@ -120,5 +177,10 @@ abstract class _ContenidoStore with Store {
   @action
   void setSelectedTema(Tema tema) {
     _selectedTema = tema;
+  }
+
+  @action
+  void setSearchTerm(String term) {
+    _searchTerm = term;
   }
 }

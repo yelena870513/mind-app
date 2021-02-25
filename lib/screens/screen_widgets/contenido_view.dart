@@ -1,3 +1,4 @@
+import 'package:boilerplate/constants/font_family.dart';
 import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
 import 'package:boilerplate/models/modelo/contenido.dart';
@@ -7,21 +8,55 @@ import 'package:flutter_screenutil/screenutil.dart';
 
 class ContenidoView extends StatelessWidget {
   final Contenido contenido;
+  final String searchTerm;
+  final double fontSizeTitulo;
+  final double fontSizeContenido;
 
-  ContenidoView(this.contenido);
+  ContenidoView(this.contenido, this.searchTerm, this.fontSizeTitulo,
+      this.fontSizeContenido);
+
+  String _singleTextModifier(String text) {
+    final RegExp exp =
+        RegExp(r"<\/?[^>]+(>|$)", multiLine: true, caseSensitive: false);
+    return text
+        .replaceAll(exp, '')
+        .replaceAll(RegExp(r'&aacute;'), 'á')
+        .replaceAll(RegExp(r'&eacute;'), 'é')
+        .replaceAll(RegExp(r'&iacute;'), 'í')
+        .replaceAll(RegExp(r'&oacute;'), 'ó')
+        .replaceAll(RegExp(r'&uacute;'), 'ú')
+        .replaceAll(RegExp(r'&ntilde;'), 'ñ')
+        .replaceAll(RegExp(r'&raquo;'), '');
+  }
+
+  String _htmlMarker(String text) {
+    String result = text;
+    if (searchTerm.length >= 3) {
+      String query = searchTerm;
+      query = query.replaceAll(new RegExp(r'a', caseSensitive: false), '[a|á]');
+      query = query.replaceAll(new RegExp(r'e', caseSensitive: false), '[e|é]');
+      query = query.replaceAll(new RegExp(r'i', caseSensitive: false), '[i|í]');
+      query = query.replaceAll(new RegExp(r'o', caseSensitive: false), '[o|ó]');
+      query = query.replaceAll(new RegExp(r'u', caseSensitive: false), '[u|ú]');
+      result = result.replaceAll(RegExp(r'&aacute;'), 'á');
+      result = result.replaceAll(RegExp(r'&eacute;'), 'é');
+      result = result.replaceAll(RegExp(r'&iacute;'), 'í');
+      result = result.replaceAll(RegExp(r'&oacute;'), 'ó');
+      result = result.replaceAll(RegExp(r'&uacute;'), 'ú');
+      result = result.replaceAll(RegExp(r'&ntilde;'), 'ñ');
+      result = result.replaceAllMapped(new RegExp(query, caseSensitive: false),
+          (Match m) {
+        String group = m.group(0);
+        return '<span><b><i><u>' + group + '</u></i></b></span>';
+      });
+    }
+    return result;
+  }
 
   @override
   Widget build(BuildContext context) {
-    final RegExp exp =
-        RegExp(r"<\/?[^>]+(>|$)", multiLine: true, caseSensitive: false);
-    String texto = contenido.texto.replaceAll(exp, '');
-    texto = texto.replaceAll(RegExp(r'&aacute;'), 'á');
-    texto = texto.replaceAll(RegExp(r'&eacute;'), 'é');
-    texto = texto.replaceAll(RegExp(r'&iacute;'), 'í');
-    texto = texto.replaceAll(RegExp(r'&oacute;'), 'ó');
-    texto = texto.replaceAll(RegExp(r'&uacute;'), 'ú');
-    texto = texto.replaceAll(RegExp(r'&ntilde;'), 'ñ');
-    texto = texto.replaceAll(RegExp(r'&raquo;'), '');
+    String texto = _singleTextModifier(contenido.texto);
+    String finalHtml = _htmlMarker(contenido.texto);
     return ExpandableNotifier(
         child: Padding(
       padding: const EdgeInsets.all(10),
@@ -30,7 +65,7 @@ class ContenidoView extends StatelessWidget {
         child: Column(
           children: <Widget>[
             SizedBox(
-              height: 30,
+              height: 15,
               child: Container(
                 decoration: BoxDecoration(
                   color: const Color.fromRGBO(69, 0, 117, 0.6),
@@ -44,7 +79,7 @@ class ContenidoView extends StatelessWidget {
               child: ExpandablePanel(
                 theme: const ExpandableThemeData(
                   headerAlignment: ExpandablePanelHeaderAlignment.center,
-                  tapBodyToCollapse: true,
+                  tapBodyToCollapse: false,
                 ),
                 header: Padding(
                     padding: EdgeInsets.all(10),
@@ -52,15 +87,19 @@ class ContenidoView extends StatelessWidget {
                       contenido.titulo,
                       style: TextStyle(
                           color: Color(0xff450075),
-                          fontSize: 20,
-                          fontFamily: 'Latto',
+                          fontSize:
+                              ScreenUtil().setSp(fontSizeTitulo),
+                          fontFamily: FontFamily.latto,
                           fontWeight: FontWeight.bold,
                           decoration: TextDecoration.underline),
                     )),
                 collapsed: Text(
                   texto,
                   style: TextStyle(
-                      color: Colors.black, fontSize: 16, fontFamily: 'Latto'),
+                      color: Colors.black,
+                      fontSize: ScreenUtil().setSp(fontSizeContenido),
+                      fontFamily: FontFamily.latto,
+                      fontWeight: FontWeight.w500),
                   softWrap: true,
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
@@ -71,17 +110,21 @@ class ContenidoView extends StatelessWidget {
                     Padding(
                       padding: EdgeInsets.only(bottom: 10),
                       child: Html(
-                        data: contenido.texto,
+                        data: finalHtml,
                         style: {
                           "p": Style(
                               color: Colors.black,
-                              fontSize: FontSize(16),
-                              fontFamily: 'Latto'),
+                              fontSize: FontSize(
+                                  ScreenUtil().setSp(fontSizeContenido)),
+                              fontFamily: FontFamily.latto,
+                              fontWeight: FontWeight.w500),
                           "span": Style(
-                              color: Color(0xff450075),
-                              fontSize: FontSize(24),
+                              color: const Color(0xff450075),
+                              fontSize: FontSize(
+                                  ScreenUtil().setSp(fontSizeContenido)),
                               fontWeight: FontWeight.w400,
-                              fontFamily: 'Latto')
+                              fontFamily: FontFamily.latto),
+                          "u": Style(color: const Color(0xff450075)),
                         },
                       ),
                     ),

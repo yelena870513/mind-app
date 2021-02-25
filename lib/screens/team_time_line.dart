@@ -11,7 +11,6 @@ class TeamTimeLine extends StatefulWidget {
 class _TeamTimeLineState extends State<TeamTimeLine> {
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
     return LayoutBuilder(builder: (context, constraints) {
       final centerDot = constraints.maxWidth / 2 - _dotSize / 2;
       return Stack(

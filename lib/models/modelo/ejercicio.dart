@@ -5,9 +5,10 @@ class Ejercicio {
   String type;
   String header;
   String img;
+  String tiempo;
 
   Ejercicio(
-      {this.id, this.ejercicio, this.tema, this.type, this.header, this.img});
+      {this.id, this.ejercicio, this.tema, this.type, this.header, this.img, this.tiempo});
 
   factory Ejercicio.fromJson(Map<String, dynamic> ejercicio) {
     return Ejercicio(
@@ -17,6 +18,7 @@ class Ejercicio {
       type: ejercicio['type'],
       header: ejercicio['header'],
       img: ejercicio['img'],
+      tiempo: ejercicio['tiempo'],
     );
   }
 }

@@ -1,8 +1,7 @@
-import 'package:boilerplate/stores/contenido/contenido_store.dart';
 import 'package:boilerplate/stores/ejercicio/ejercicio_store.dart';
+import 'package:boilerplate/stores/font/font_store.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:boilerplate/screens/screen_widgets/contenido_view.dart';
 import 'screen_widgets/header_widget.dart';
 
 class EjerciciosScreen extends StatefulWidget {
@@ -16,6 +15,7 @@ class _EjerciciosScreenState extends State<EjerciciosScreen>
     with TickerProviderStateMixin {
   EjercicioStore _ejerciciosStore;
   AnimationController animationController;
+  FontStore _fontStore;
 
   @override
   void initState() {
@@ -28,10 +28,12 @@ class _EjerciciosScreenState extends State<EjerciciosScreen>
   void didChangeDependencies() {
     super.didChangeDependencies();
     _ejerciciosStore = Provider.of<EjercicioStore>(context);
+    _fontStore = Provider.of<FontStore>(context);
   }
 
   @override
   Widget build(BuildContext context) {
+
     return Container(
       child: Stack(
         children: <Widget>[
@@ -42,7 +44,7 @@ class _EjerciciosScreenState extends State<EjerciciosScreen>
             margin: EdgeInsets.only(
                 top: 50, left: MediaQuery.of(context).size.width - 60),
           ),
-          HeaderWidget(),
+          HeaderWidget(fontSizeMainHeader: _fontStore.fontSizeMainHeader,),
           Container(
             height:
                 (MediaQuery.of(context).size.height - widget.toolbarHeight) -

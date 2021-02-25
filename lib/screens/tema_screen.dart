@@ -1,7 +1,9 @@
 import 'package:boilerplate/models/modelo/ejercicio.dart';
 import 'package:boilerplate/screens/screen_widgets/temas_ejercicio_view.dart';
 import 'package:boilerplate/stores/ejercicio/ejercicio_store.dart';
+import 'package:boilerplate/stores/font/font_store.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/screenutil.dart';
 import 'package:provider/provider.dart';
 import 'screen_widgets/header_widget.dart';
 
@@ -16,6 +18,7 @@ class TemaScreen extends StatefulWidget {
 
 class _TemaScreenState extends State<TemaScreen> with TickerProviderStateMixin {
   EjercicioStore _temaStore;
+  FontStore _fontStore;
   AnimationController animationController;
 
   @override
@@ -29,6 +32,7 @@ class _TemaScreenState extends State<TemaScreen> with TickerProviderStateMixin {
   void didChangeDependencies() {
     super.didChangeDependencies();
     _temaStore = Provider.of<EjercicioStore>(context);
+    _fontStore = Provider.of<FontStore>(context);
   }
 
   @override
@@ -43,7 +47,7 @@ class _TemaScreenState extends State<TemaScreen> with TickerProviderStateMixin {
             margin: EdgeInsets.only(
                 top: 50, left: MediaQuery.of(context).size.width - 60),
           ),
-          HeaderWidget(),
+          HeaderWidget(fontSizeMainHeader: _fontStore.fontSizeMainHeader,),
           Container(
             height:
                 (MediaQuery.of(context).size.height - widget.toolbarHeight) -
@@ -80,8 +84,11 @@ class _TemaScreenState extends State<TemaScreen> with TickerProviderStateMixin {
                           return e.tema == _temaStore.temas[index].id;
                         }).toList();
 
-                        return TemaEjercicioView(_temaStore.temas[index],
-                            listado, animationController, animation);
+                        return TemaEjercicioView(
+                            tema: _temaStore.temas[index],
+                            ejercicios: listado,
+                            animationController: animationController,
+                            animation: animation);
                       }),
                 )
               ],

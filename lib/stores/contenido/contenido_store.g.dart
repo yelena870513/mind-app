@@ -9,6 +9,12 @@ part of 'contenido_store.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$ContenidoStore on _ContenidoStore, Store {
+  Computed<bool> _$hidePlaceholderComputed;
+
+  @override
+  bool get hidePlaceholder => (_$hidePlaceholderComputed ??=
+          Computed<bool>(() => super.hidePlaceholder))
+      .value;
   Computed<bool> _$loadingContenidoComputed;
 
   @override
@@ -61,6 +67,11 @@ mixin _$ContenidoStore on _ContenidoStore, Store {
   int get contenidosCount =>
       (_$contenidosCountComputed ??= Computed<int>(() => super.contenidosCount))
           .value;
+  Computed<String> _$searchTermComputed;
+
+  @override
+  String get searchTerm =>
+      (_$searchTermComputed ??= Computed<String>(() => super.searchTerm)).value;
 
   final _$successAtom = Atom(name: '_ContenidoStore.success');
 
@@ -167,6 +178,40 @@ mixin _$ContenidoStore on _ContenidoStore, Store {
     }, _$_temasAtom, name: '${_$_temasAtom.name}_set');
   }
 
+  final _$_searchTermAtom = Atom(name: '_ContenidoStore._searchTerm');
+
+  @override
+  String get _searchTerm {
+    _$_searchTermAtom.context.enforceReadPolicy(_$_searchTermAtom);
+    _$_searchTermAtom.reportObserved();
+    return super._searchTerm;
+  }
+
+  @override
+  set _searchTerm(String value) {
+    _$_searchTermAtom.context.conditionallyRunInAction(() {
+      super._searchTerm = value;
+      _$_searchTermAtom.reportChanged();
+    }, _$_searchTermAtom, name: '${_$_searchTermAtom.name}_set');
+  }
+
+  final _$_hidePlaceholderAtom = Atom(name: '_ContenidoStore._hidePlaceholder');
+
+  @override
+  bool get _hidePlaceholder {
+    _$_hidePlaceholderAtom.context.enforceReadPolicy(_$_hidePlaceholderAtom);
+    _$_hidePlaceholderAtom.reportObserved();
+    return super._hidePlaceholder;
+  }
+
+  @override
+  set _hidePlaceholder(bool value) {
+    _$_hidePlaceholderAtom.context.conditionallyRunInAction(() {
+      super._hidePlaceholder = value;
+      _$_hidePlaceholderAtom.reportChanged();
+    }, _$_hidePlaceholderAtom, name: '${_$_hidePlaceholderAtom.name}_set');
+  }
+
   final _$_ContenidoStoreActionController =
       ActionController(name: '_ContenidoStore');
 
@@ -175,6 +220,16 @@ mixin _$ContenidoStore on _ContenidoStore, Store {
     final _$actionInfo = _$_ContenidoStoreActionController.startAction();
     try {
       return super.getContenidos();
+    } finally {
+      _$_ContenidoStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void hidenPlaceholder(bool value) {
+    final _$actionInfo = _$_ContenidoStoreActionController.startAction();
+    try {
+      return super.hidenPlaceholder(value);
     } finally {
       _$_ContenidoStoreActionController.endAction(_$actionInfo);
     }
@@ -205,6 +260,16 @@ mixin _$ContenidoStore on _ContenidoStore, Store {
     final _$actionInfo = _$_ContenidoStoreActionController.startAction();
     try {
       return super.setSelectedTema(tema);
+    } finally {
+      _$_ContenidoStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void setSearchTerm(String term) {
+    final _$actionInfo = _$_ContenidoStoreActionController.startAction();
+    try {
+      return super.setSearchTerm(term);
     } finally {
       _$_ContenidoStoreActionController.endAction(_$actionInfo);
     }

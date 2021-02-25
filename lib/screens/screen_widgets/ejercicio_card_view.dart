@@ -1,17 +1,28 @@
 import 'package:boilerplate/constants/fintness_app_theme.dart';
+import 'package:boilerplate/constants/font_family.dart';
 import 'package:boilerplate/models/modelo/ejercicio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_html/style.dart';
+import 'package:flutter_screenutil/screenutil.dart';
 import 'package:material_dialog/material_dialog.dart';
 
 class EjercicioCardView extends StatelessWidget {
   final AnimationController animationController;
   final Animation animation;
   final Ejercicio ejercicio;
+  final double fontSizeTitulo;
+  final double fontSizeContenido;
+  final double fontSizeCreditoCargo;
 
   const EjercicioCardView(
-      {Key key, this.animationController, this.animation, this.ejercicio})
+      {Key key,
+      this.animationController,
+      this.animation,
+      this.ejercicio,
+      this.fontSizeTitulo,
+      this.fontSizeContenido,
+      this.fontSizeCreditoCargo})
       : super(key: key);
 
   @override
@@ -67,9 +78,9 @@ class EjercicioCardView extends StatelessWidget {
                         'Ejercicio ' + ejercicio.ejercicio.toString(),
                         textAlign: TextAlign.left,
                         style: TextStyle(
-                          fontFamily: FintnessAppTheme.fontName,
-                          fontWeight: FontWeight.normal,
-                          fontSize: 14,
+                          fontFamily: FontFamily.latto,
+                          fontWeight: FontWeight.w600,
+                          fontSize: ScreenUtil().setSp(fontSizeCreditoCargo),
                           letterSpacing: 0.0,
                           color: FintnessAppTheme.white,
                         ),
@@ -83,9 +94,9 @@ class EjercicioCardView extends StatelessWidget {
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
                           style: TextStyle(
-                            fontFamily: FintnessAppTheme.fontName,
-                            fontWeight: FontWeight.normal,
-                            fontSize: 20,
+                            fontFamily: FontFamily.latto,
+                            fontWeight: FontWeight.w600,
+                            fontSize: ScreenUtil().setSp(fontSizeTitulo),
                             letterSpacing: 0.0,
                             color: FintnessAppTheme.white,
                           ),
@@ -111,12 +122,13 @@ class EjercicioCardView extends StatelessWidget {
                             Padding(
                               padding: const EdgeInsets.only(left: 4.0),
                               child: Text(
-                                '68 min',
+                                ejercicio.tiempo,
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
-                                  fontFamily: FintnessAppTheme.fontName,
-                                  fontWeight: FontWeight.w500,
-                                  fontSize: 14,
+                                  fontFamily: FontFamily.latto,
+                                  fontWeight: FontWeight.w600,
+                                  fontSize:
+                                      ScreenUtil().setSp(fontSizeCreditoCargo),
                                   letterSpacing: 0.0,
                                   color: FintnessAppTheme.white,
                                 ),
@@ -150,56 +162,73 @@ class EjercicioCardView extends StatelessWidget {
                                     _showDialog(
                                         context: context,
                                         child: MaterialDialog(
-                                          borderRadius: 5.0,
-                                          enableFullWidth: true,
-                                          title: Text(
-                                            'Ejercicio ' + ejercicio.ejercicio.toString(),
-                                            style: TextStyle(
-                                              color: Colors.white,
-                                              fontSize: 16.0,
-                                            ),
-                                          ),
-                                          headerColor: Color(0xff450075),
-                                          backgroundColor: Colors.white,
-                                          closeButtonColor: Colors.white,
-                                          enableCloseButton: true,
-                                          enableBackButton: false,
-                                          onCloseButtonClicked: () {
-                                            Navigator.of(context).pop();
-                                          },
-                                          content:
-                                            Container(
-                                              child: Column(
-                                                mainAxisSize: MainAxisSize.min,
-                                                children: <Widget>[
-                                                  Container(
-                                                    width: 150,
-                                                    color: Colors.white10,
-                                                    child: Image.asset(
-                                                      'assets/images/' + ejercicio.img,
-
-                                                    ),
-                                                  ),
-                                                  Html(
-                                                    data: header,
-                                                    style: {
-                                                      "p": Style(
-                                                          color: Colors.black,
-                                                          fontSize: FontSize(16),
-                                                          fontFamily: 'Latto'),
-                                                      "span": Style(
-                                                          color: Color(0xff450075),
-                                                          fontSize: FontSize(24),
-                                                          fontWeight: FontWeight.w400,
-                                                          fontFamily: 'Latto')
-                                                    },
-                                                  ),
-                                                ],
+                                            borderRadius: 5.0,
+                                            enableFullWidth: true,
+                                            title: Text(
+                                              'Ejercicio ' +
+                                                  ejercicio.ejercicio
+                                                      .toString(),
+                                              style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: ScreenUtil()
+                                                    .setSp(fontSizeContenido),
+                                                fontWeight: FontWeight.w600,
+                                                fontFamily: FontFamily.latto,
                                               ),
-
-                                            )
-
-                                        ));
+                                            ),
+                                            headerColor: Color(0xff450075),
+                                            backgroundColor: Colors.white,
+                                            closeButtonColor: Colors.white,
+                                            enableCloseButton: true,
+                                            enableBackButton: false,
+                                            onCloseButtonClicked: () {
+                                              Navigator.of(context).pop();
+                                            },
+                                            content: Container(
+                                              child: SingleChildScrollView(
+                                                physics:
+                                                    const BouncingScrollPhysics(),
+                                                child: Column(
+                                                  mainAxisSize:
+                                                      MainAxisSize.min,
+                                                  children: <Widget>[
+                                                    Container(
+                                                      width: 150,
+                                                      color: Colors.white10,
+                                                      child: Image.asset(
+                                                        'assets/images/' +
+                                                            ejercicio.img,
+                                                      ),
+                                                    ),
+                                                    Html(
+                                                      data: header,
+                                                      style: {
+                                                        "p": Style(
+                                                            color: Colors.black,
+                                                            fontSize: FontSize(
+                                                                ScreenUtil().setSp(
+                                                                    fontSizeContenido)),
+                                                            fontFamily: 'Latto',
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .w500),
+                                                        "span": Style(
+                                                            color: const Color(
+                                                                0xff450075),
+                                                            fontSize:
+                                                                FontSize( ScreenUtil().setSp(
+                                                                    fontSizeContenido)),
+                                                            fontWeight:
+                                                                FontWeight.w400,
+                                                            fontFamily:
+                                                                FontFamily
+                                                                    .latto),
+                                                      },
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                            )));
                                   },
                                 ),
                               ),

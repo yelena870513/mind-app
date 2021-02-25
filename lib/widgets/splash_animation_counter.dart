@@ -23,13 +23,13 @@ class SplashAnimationCounter extends StatelessWidget {
                 style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 22,
-                    fontFamily: FontFamily.roboto)),
+                    fontFamily: FontFamily.latto)),
           ),
           Expanded(
             flex: 2,
             child: TweenAnimationBuilder(
               tween: Tween(begin: 0.0, end: 1.0),
-              duration: Duration(milliseconds: 500),
+              duration: Duration(milliseconds: 100),
               builder: (_, value, child) {
                 return Opacity(
                   opacity: value,
@@ -40,12 +40,22 @@ class SplashAnimationCounter extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: <Widget>[
                   Text(
-                    'Cargando aplicación...',
+                    'Cargando aplicación',
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 17,
-                        fontWeight: FontWeight.w400,
+                        color: Color(0xff450075),
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: FontFamily.latto),
+                  ),
+                  const SizedBox(height: 5),
+                  Text(
+                    'Enfermedad de Alzheimer',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                        color: Color(0xff450075),
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
                         fontFamily: FontFamily.latto),
                   ),
                   const SizedBox(height: 10),

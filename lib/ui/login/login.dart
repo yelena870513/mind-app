@@ -194,7 +194,7 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget _buildSignInButton() {
     return RoundedButtonWidget(
       buttonText: AppLocalizations.of(context).translate('login_btn_sign_in'),
-      buttonColor: Colors.orangeAccent,
+      buttonColor: Color.fromRGBO(69, 0, 117, 0.6),
       textColor: Colors.white,
       onPressed: () async {
         if (_store.canLogin) {

@@ -32,8 +32,8 @@ final ThemeData themeData = new ThemeData(
     primaryColor: AppColors.orange[500],
     primaryColorBrightness: Brightness.light,
     accentColor: AppColors.orange[500],
-    accentColorBrightness: Brightness.light
-);
+    accentColorBrightness: Brightness.light,
+    textSelectionHandleColor: Color.fromRGBO(69, 0, 117, 0.6));
 
 final ThemeData themeDataDark = ThemeData(
   fontFamily: FontFamily.productSans,
