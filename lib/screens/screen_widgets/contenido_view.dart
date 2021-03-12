@@ -11,9 +11,10 @@ class ContenidoView extends StatelessWidget {
   final String searchTerm;
   final double fontSizeTitulo;
   final double fontSizeContenido;
+  final ValueNotifier<int> expandedPanelNo;
 
   ContenidoView(this.contenido, this.searchTerm, this.fontSizeTitulo,
-      this.fontSizeContenido);
+      this.fontSizeContenido, this.expandedPanelNo);
 
   String _singleTextModifier(String text) {
     final RegExp exp =
@@ -58,93 +59,94 @@ class ContenidoView extends StatelessWidget {
     String texto = _singleTextModifier(contenido.texto);
     String finalHtml = _htmlMarker(contenido.texto);
     return ExpandableNotifier(
+        initialExpanded: contenido.id == expandedPanelNo.value,
         child: Padding(
-      padding: const EdgeInsets.all(10),
-      child: Card(
-        clipBehavior: Clip.antiAlias,
-        child: Column(
-          children: <Widget>[
-            SizedBox(
-              height: 15,
-              child: Container(
-                decoration: BoxDecoration(
-                  color: const Color.fromRGBO(69, 0, 117, 0.6),
-                  shape: BoxShape.rectangle,
+          padding: const EdgeInsets.all(10),
+          child: Card(
+            clipBehavior: Clip.antiAlias,
+            child: Column(
+              children: <Widget>[
+                SizedBox(
+                  height: 15,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: const Color.fromRGBO(69, 0, 117, 0.6),
+                      shape: BoxShape.rectangle,
+                    ),
+                  ),
                 ),
-              ),
-            ),
-            ScrollOnExpand(
-              scrollOnExpand: true,
-              scrollOnCollapse: false,
-              child: ExpandablePanel(
-                theme: const ExpandableThemeData(
-                  headerAlignment: ExpandablePanelHeaderAlignment.center,
-                  tapBodyToCollapse: false,
-                ),
-                header: Padding(
-                    padding: EdgeInsets.all(10),
-                    child: Text(
-                      contenido.titulo,
-                      style: TextStyle(
-                          color: Color(0xff450075),
-                          fontSize:
-                              ScreenUtil().setSp(fontSizeTitulo),
-                          fontFamily: FontFamily.latto,
-                          fontWeight: FontWeight.bold,
-                          decoration: TextDecoration.underline),
-                    )),
-                collapsed: Text(
-                  texto,
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontSize: ScreenUtil().setSp(fontSizeContenido),
-                      fontFamily: FontFamily.latto,
-                      fontWeight: FontWeight.w500),
-                  softWrap: true,
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
-                ),
-                expanded: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Padding(
-                      padding: EdgeInsets.only(bottom: 10),
-                      child: Html(
-                        data: finalHtml,
-                        style: {
-                          "p": Style(
-                              color: Colors.black,
-                              fontSize: FontSize(
-                                  ScreenUtil().setSp(fontSizeContenido)),
+                ScrollOnExpand(
+                  scrollOnExpand: true,
+                  scrollOnCollapse: false,
+                  child: ExpandablePanel(
+                    theme: const ExpandableThemeData(
+                      headerAlignment: ExpandablePanelHeaderAlignment.center,
+                      tapBodyToCollapse: false,
+                    ),
+                    header: Padding(
+                        padding: EdgeInsets.all(10),
+                        child: Text(
+                          contenido.titulo,
+                          style: TextStyle(
+                              color: Color(0xff450075),
+                              fontSize: ScreenUtil().setSp(fontSizeTitulo),
                               fontFamily: FontFamily.latto,
-                              fontWeight: FontWeight.w500),
-                          "span": Style(
-                              color: const Color(0xff450075),
-                              fontSize: FontSize(
-                                  ScreenUtil().setSp(fontSizeContenido)),
-                              fontWeight: FontWeight.w400,
-                              fontFamily: FontFamily.latto),
-                          "u": Style(color: const Color(0xff450075)),
-                        },
-                      ),
+                              fontWeight: FontWeight.bold,
+                              decoration: TextDecoration.underline),
+                        )),
+                    collapsed: Text(
+                      texto,
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontSize: ScreenUtil().setSp(fontSizeContenido),
+                          fontFamily: FontFamily.latto,
+                          fontWeight: FontWeight.w500),
+                      softWrap: true,
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
                     ),
-                  ],
+                    expanded: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Padding(
+                          padding: EdgeInsets.only(bottom: 10),
+                          child: Html(
+                            data: finalHtml,
+                            style: {
+                              "p": Style(
+                                  color: Colors.black,
+                                  fontSize: FontSize(
+                                      ScreenUtil().setSp(fontSizeContenido)),
+                                  fontFamily: FontFamily.latto,
+                                  fontWeight: FontWeight.w500),
+                              "span": Style(
+                                  color: const Color(0xff450075),
+                                  fontSize: FontSize(
+                                      ScreenUtil().setSp(fontSizeContenido)),
+                                  fontWeight: FontWeight.w400,
+                                  fontFamily: FontFamily.latto),
+                              "u": Style(color: const Color(0xff450075)),
+                            },
+                          ),
+                        ),
+                      ],
+                    ),
+                    builder: (_, collapsed, expanded) {
+                      return Padding(
+                        padding:
+                            EdgeInsets.only(left: 10, right: 10, bottom: 10),
+                        child: Expandable(
+                          collapsed: collapsed,
+                          expanded: expanded,
+                          theme: const ExpandableThemeData(crossFadePoint: 0),
+                        ),
+                      );
+                    },
+                  ),
                 ),
-                builder: (_, collapsed, expanded) {
-                  return Padding(
-                    padding: EdgeInsets.only(left: 10, right: 10, bottom: 10),
-                    child: Expandable(
-                      collapsed: collapsed,
-                      expanded: expanded,
-                      theme: const ExpandableThemeData(crossFadePoint: 0),
-                    ),
-                  );
-                },
-              ),
+              ],
             ),
-          ],
-        ),
-      ),
-    ));
+          ),
+        ));
   }
 }

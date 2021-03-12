@@ -19,7 +19,7 @@ class SplashAnimationCounter extends StatelessWidget {
         children: <Widget>[
           Expanded(
             flex: 3,
-            child: Text("Alzheimer",
+            child: Text("",
                 style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 22,

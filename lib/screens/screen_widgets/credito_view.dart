@@ -190,18 +190,45 @@ class CreditoView extends StatelessWidget {
                       overflow: TextOverflow.ellipsis,
                       textAlign: TextAlign.center,
                     ),
-                    subtitle: Text(
-                      'Mercedes María Sosa Hernández; Anays Gómez García',
-                      style: TextStyle(
-                          color: Colors.black,
-                          fontSize: ScreenUtil().setSp(fontSizeContenido),
-                          fontFamily: 'Latto'),
-                      softWrap: true,
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
-                      textAlign: TextAlign.center,
-                    ),
+                    subtitle: Column(
+                      children: <Widget>[
+                        Text(
+                          'Mercedes María Sosa Hernández',
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontSize: ScreenUtil().setSp(fontSizeContenido),
+                              fontFamily: 'Latto'),
+                          softWrap: true,
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                          textAlign: TextAlign.center,
+                        ),
+    Text(
+    'Anays Gómez García ',
+    style: TextStyle(
+    color: Colors.black,
+    fontSize: ScreenUtil().setSp(fontSizeContenido),
+    fontFamily: 'Latto'),
+    softWrap: true,
+    maxLines: 2,
+    overflow: TextOverflow.ellipsis,
+    textAlign: TextAlign.center,
+    ),
+                        Text(
+                          'Ivett Muñoz Ramírez',
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontSize: ScreenUtil().setSp(fontSizeContenido),
+                              fontFamily: 'Latto'),
+                          softWrap: true,
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                          textAlign: TextAlign.center,
+                        ),
+                      ],
+                    )
                   ),
+
                   ListTile(
                     title: Text(
                       'ISBN'.toUpperCase(),

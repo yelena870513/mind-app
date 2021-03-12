@@ -232,7 +232,7 @@ class SplashAnimationWidget extends StatelessWidget {
                     builder: (context, child) {
                       return AnimatedOpacity(
                         child: child,
-                        duration: Duration(milliseconds: 1),
+                        duration: Duration(milliseconds: 100),
                         opacity: splashAnimation.value,
                       );
                     },

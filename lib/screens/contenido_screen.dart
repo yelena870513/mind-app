@@ -24,6 +24,7 @@ class _ContenidoScreenState extends State<ContenidoScreen>
   ContenidoStore _contenidoStore;
   FontStore _fontStore;
   AnimationController animationController;
+  final ValueNotifier<int> expandedPanelNo = ValueNotifier(0);
 
   @override
   void initState() {
@@ -51,7 +52,9 @@ class _ContenidoScreenState extends State<ContenidoScreen>
             margin: EdgeInsets.only(
                 top: 50, left: MediaQuery.of(context).size.width - 60),
           ),
-          HeaderWidget(fontSizeMainHeader: _fontStore.fontSizeMainHeader,),
+          HeaderWidget(
+            fontSizeMainHeader: _fontStore.fontSizeMainHeader,
+          ),
           Container(
               height:
                   (MediaQuery.of(context).size.height - widget.toolbarHeight) -
@@ -110,11 +113,18 @@ class _ContenidoScreenState extends State<ContenidoScreen>
                                               (1 / count) * index, 1.0,
                                               curve: Curves.fastOutSlowIn)));
                               animationController.forward();
-                              return ContenidoView(
-                                  _contenidoStore.contenidos[index],
-                                  _contenidoStore.searchTerm,
-                                  _fontStore.fontSizeTitulo,
-                                  _fontStore.fontSizeContenido);
+                              return GestureDetector(
+                                child: ContenidoView(
+                                    _contenidoStore.contenidos[index],
+                                    _contenidoStore.searchTerm,
+                                    _fontStore.fontSizeTitulo,
+                                    _fontStore.fontSizeContenido,
+                                    expandedPanelNo),
+                                onTap: () {
+                                  expandedPanelNo.value =
+                                      _contenidoStore.contenidos[index].id;
+                                },
+                              );
                             }),
                       ),
                     );
