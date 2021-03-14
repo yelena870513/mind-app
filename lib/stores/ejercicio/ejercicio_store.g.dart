@@ -60,6 +60,18 @@ mixin _$EjercicioStore on _EjercicioStore, Store {
   int get ejercicioCount =>
       (_$ejercicioCountComputed ??= Computed<int>(() => super.ejercicioCount))
           .value;
+  Computed<int> _$idEjercicioSeleccionadoComputed;
+
+  @override
+  int get idEjercicioSeleccionado => (_$idEjercicioSeleccionadoComputed ??=
+          Computed<int>(() => super.idEjercicioSeleccionado))
+      .value;
+  Computed<int> _$idTemaSeleccionadoComputed;
+
+  @override
+  int get idTemaSeleccionado => (_$idTemaSeleccionadoComputed ??=
+          Computed<int>(() => super.idTemaSeleccionado))
+      .value;
 
   final _$successAtom = Atom(name: '_EjercicioStore.success');
 
@@ -165,6 +177,46 @@ mixin _$EjercicioStore on _EjercicioStore, Store {
     }, _$_temasAtom, name: '${_$_temasAtom.name}_set');
   }
 
+  final _$_idEjercicioSeleccionadoAtom =
+      Atom(name: '_EjercicioStore._idEjercicioSeleccionado');
+
+  @override
+  int get _idEjercicioSeleccionado {
+    _$_idEjercicioSeleccionadoAtom.context
+        .enforceReadPolicy(_$_idEjercicioSeleccionadoAtom);
+    _$_idEjercicioSeleccionadoAtom.reportObserved();
+    return super._idEjercicioSeleccionado;
+  }
+
+  @override
+  set _idEjercicioSeleccionado(int value) {
+    _$_idEjercicioSeleccionadoAtom.context.conditionallyRunInAction(() {
+      super._idEjercicioSeleccionado = value;
+      _$_idEjercicioSeleccionadoAtom.reportChanged();
+    }, _$_idEjercicioSeleccionadoAtom,
+        name: '${_$_idEjercicioSeleccionadoAtom.name}_set');
+  }
+
+  final _$_idTemaSeleccionadoAtom =
+      Atom(name: '_EjercicioStore._idTemaSeleccionado');
+
+  @override
+  int get _idTemaSeleccionado {
+    _$_idTemaSeleccionadoAtom.context
+        .enforceReadPolicy(_$_idTemaSeleccionadoAtom);
+    _$_idTemaSeleccionadoAtom.reportObserved();
+    return super._idTemaSeleccionado;
+  }
+
+  @override
+  set _idTemaSeleccionado(int value) {
+    _$_idTemaSeleccionadoAtom.context.conditionallyRunInAction(() {
+      super._idTemaSeleccionado = value;
+      _$_idTemaSeleccionadoAtom.reportChanged();
+    }, _$_idTemaSeleccionadoAtom,
+        name: '${_$_idTemaSeleccionadoAtom.name}_set');
+  }
+
   final _$_EjercicioStoreActionController =
       ActionController(name: '_EjercicioStore');
 
@@ -203,6 +255,26 @@ mixin _$EjercicioStore on _EjercicioStore, Store {
     final _$actionInfo = _$_EjercicioStoreActionController.startAction();
     try {
       return super.setSelectedEjercicio(ejercicio);
+    } finally {
+      _$_EjercicioStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void setIdEjercicioSeleccionado(int ejercicio) {
+    final _$actionInfo = _$_EjercicioStoreActionController.startAction();
+    try {
+      return super.setIdEjercicioSeleccionado(ejercicio);
+    } finally {
+      _$_EjercicioStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void setIdTemaSeleccionado(int tema) {
+    final _$actionInfo = _$_EjercicioStoreActionController.startAction();
+    try {
+      return super.setIdTemaSeleccionado(tema);
     } finally {
       _$_EjercicioStoreActionController.endAction(_$actionInfo);
     }

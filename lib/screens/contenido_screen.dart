@@ -24,7 +24,6 @@ class _ContenidoScreenState extends State<ContenidoScreen>
   ContenidoStore _contenidoStore;
   FontStore _fontStore;
   AnimationController animationController;
-  final ValueNotifier<int> expandedPanelNo = ValueNotifier(0);
 
   @override
   void initState() {
@@ -113,18 +112,11 @@ class _ContenidoScreenState extends State<ContenidoScreen>
                                               (1 / count) * index, 1.0,
                                               curve: Curves.fastOutSlowIn)));
                               animationController.forward();
-                              return GestureDetector(
-                                child: ContenidoView(
-                                    _contenidoStore.contenidos[index],
-                                    _contenidoStore.searchTerm,
-                                    _fontStore.fontSizeTitulo,
-                                    _fontStore.fontSizeContenido,
-                                    expandedPanelNo),
-                                onTap: () {
-                                  expandedPanelNo.value =
-                                      _contenidoStore.contenidos[index].id;
-                                },
-                              );
+                              return ContenidoView(
+                                  _contenidoStore.contenidos[index],
+                                  _contenidoStore.searchTerm,
+                                  _fontStore.fontSizeTitulo,
+                                  _fontStore.fontSizeContenido);
                             }),
                       ),
                     );

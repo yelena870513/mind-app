@@ -2,11 +2,13 @@ import 'package:boilerplate/constants/font_family.dart';
 import 'package:boilerplate/models/modelo/ejercicio.dart';
 import 'package:boilerplate/models/modelo/tema.dart';
 import 'package:boilerplate/screens/screen_widgets/information_widget.dart';
+import 'package:boilerplate/stores/ejercicio/ejercicio_store.dart';
 import 'package:boilerplate/stores/font/font_store.dart';
 import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_screenutil/screenutil.dart';
+import 'package:mobx/mobx.dart';
 import 'package:provider/provider.dart';
 
 import 'ejercicio_card_view.dart';
@@ -31,16 +33,46 @@ class TemaEjercicioView extends StatefulWidget {
 
 class _TemaEjercicioViewState extends State<TemaEjercicioView> {
   FontStore _fontStore;
+  EjercicioStore _ejercicioStore;
+  ExpandableController controller;
+  List<ReactionDisposer> _disposer;
+
+  @override
+  void initState() {
+    super.initState();
+    controller = ExpandableController(initialExpanded: false);
+    controller.addListener(() {
+      if (controller.value) {
+        _ejercicioStore.setIdTemaSeleccionado(widget.tema.id);
+        print(widget.tema.id.toString());
+      }
+    });
+  }
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
     _fontStore = Provider.of<FontStore>(context);
+    _ejercicioStore = Provider.of<EjercicioStore>(context);
+    _disposer ??= [
+      reaction(
+              (_) => _ejercicioStore.idTemaSeleccionado,
+              (int tema) {
+            controller.expanded = tema == widget.tema.id;
+          }
+      )
+    ];
+  }
+  @override
+  void dispose() {
+    _disposer.forEach((f) => f());
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return Observer(builder: (_) => ExpandableNotifier(
+        controller: controller,
         child: Padding(
           padding: const EdgeInsets.all(10),
           child: Card(

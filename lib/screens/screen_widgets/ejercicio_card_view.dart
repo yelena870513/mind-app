@@ -1,13 +1,17 @@
 import 'package:boilerplate/constants/fintness_app_theme.dart';
 import 'package:boilerplate/constants/font_family.dart';
 import 'package:boilerplate/models/modelo/ejercicio.dart';
+import 'package:boilerplate/stores/ejercicio/ejercicio_store.dart';
+import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_html/style.dart';
 import 'package:flutter_screenutil/screenutil.dart';
 import 'package:material_dialog/material_dialog.dart';
+import 'package:mobx/mobx.dart';
+import 'package:provider/provider.dart';
 
-class EjercicioCardView extends StatelessWidget {
+class EjercicioCardView extends StatefulWidget {
   final AnimationController animationController;
   final Animation animation;
   final Ejercicio ejercicio;
@@ -24,14 +28,56 @@ class EjercicioCardView extends StatelessWidget {
       this.fontSizeContenido,
       this.fontSizeCreditoCargo})
       : super(key: key);
+  @override
+  _EjercicioCardViewState createState() => _EjercicioCardViewState();
+
+}
+
+
+class _EjercicioCardViewState extends State<EjercicioCardView> {
+  EjercicioStore _ejercicioStore;
+  ExpandableController controller;
+  List<ReactionDisposer> _disposer;
+
+  @override
+  void initState() {
+    super.initState();
+    controller = ExpandableController(initialExpanded: false);
+    controller.addListener(() {
+      if (controller.value) {
+        _ejercicioStore.setIdEjercicioSeleccionado(widget.ejercicio.id);
+        print(widget.ejercicio.id.toString());
+      }
+    });
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _ejercicioStore = Provider.of<EjercicioStore>(context);
+    _disposer ??= [
+      reaction(
+              (_) => _ejercicioStore.idEjercicioSeleccionado,
+              (int ejercicio) {
+            controller.expanded = ejercicio == widget.ejercicio.id;
+          }
+      )
+    ];
+  }
+
+  @override
+  void dispose() {
+    _disposer.forEach((f) => f());
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     final RegExp exp =
-        RegExp(r"<\/?[^>]+(>|$)", multiLine: true, caseSensitive: false);
+    RegExp(r"<\/?[^>]+(>|$)", multiLine: true, caseSensitive: false);
 
-    String header = ejercicio.header;
-    String texto = ejercicio.header.replaceAll(exp, '');
+    String header = widget.ejercicio.header;
+    String texto = widget.ejercicio.header.replaceAll(exp, '');
     texto = texto.replaceAll(RegExp(r'&aacute;'), 'á');
     texto = texto.replaceAll(RegExp(r'&eacute;'), 'é');
     texto = texto.replaceAll(RegExp(r'&iacute;'), 'í');
@@ -40,13 +86,13 @@ class EjercicioCardView extends StatelessWidget {
     texto = texto.replaceAll(RegExp(r'&ntilde;'), 'ñ');
     texto = texto.replaceAll(RegExp(r'&raquo;'), '');
     return AnimatedBuilder(
-      animation: animationController,
+      animation: widget.animationController,
       builder: (BuildContext context, Widget child) {
         return FadeTransition(
-          opacity: animation,
+          opacity: widget.animation,
           child: new Transform(
             transform: new Matrix4.translationValues(
-                0.0, 30 * (1.0 - animation.value), 0.0),
+                0.0, 30 * (1.0 - widget.animation.value), 0.0),
             child: Padding(
               padding: const EdgeInsets.only(
                   left: 24, right: 24, top: 16, bottom: 18),
@@ -75,12 +121,12 @@ class EjercicioCardView extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Text(
-                        'Ejercicio ' + ejercicio.ejercicio.toString(),
+                        'Ejercicio ' + widget.ejercicio.ejercicio.toString(),
                         textAlign: TextAlign.left,
                         style: TextStyle(
                           fontFamily: FontFamily.latto,
                           fontWeight: FontWeight.w600,
-                          fontSize: ScreenUtil().setSp(fontSizeCreditoCargo),
+                          fontSize: ScreenUtil().setSp(widget.fontSizeCreditoCargo),
                           letterSpacing: 0.0,
                           color: FintnessAppTheme.white,
                         ),
@@ -96,7 +142,7 @@ class EjercicioCardView extends StatelessWidget {
                           style: TextStyle(
                             fontFamily: FontFamily.latto,
                             fontWeight: FontWeight.w600,
-                            fontSize: ScreenUtil().setSp(fontSizeTitulo),
+                            fontSize: ScreenUtil().setSp(widget.fontSizeTitulo),
                             letterSpacing: 0.0,
                             color: FintnessAppTheme.white,
                           ),
@@ -122,13 +168,13 @@ class EjercicioCardView extends StatelessWidget {
                             Padding(
                               padding: const EdgeInsets.only(left: 4.0),
                               child: Text(
-                                ejercicio.tiempo,
+                                widget.ejercicio.tiempo,
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                   fontFamily: FontFamily.latto,
                                   fontWeight: FontWeight.w600,
                                   fontSize:
-                                      ScreenUtil().setSp(fontSizeCreditoCargo),
+                                  ScreenUtil().setSp(widget.fontSizeCreditoCargo),
                                   letterSpacing: 0.0,
                                   color: FintnessAppTheme.white,
                                 ),
@@ -155,7 +201,7 @@ class EjercicioCardView extends StatelessWidget {
                                   child: Icon(
                                     Icons.add,
                                     color:
-                                        const Color.fromRGBO(69, 0, 117, 0.6),
+                                    const Color.fromRGBO(69, 0, 117, 0.6),
                                     size: 44,
                                   ),
                                   onTap: () {
@@ -166,12 +212,12 @@ class EjercicioCardView extends StatelessWidget {
                                             enableFullWidth: true,
                                             title: Text(
                                               'Ejercicio ' +
-                                                  ejercicio.ejercicio
+                                                  widget.ejercicio.ejercicio
                                                       .toString(),
                                               style: TextStyle(
                                                 color: Colors.white,
                                                 fontSize: ScreenUtil()
-                                                    .setSp(fontSizeContenido),
+                                                    .setSp(widget.fontSizeContenido),
                                                 fontWeight: FontWeight.w600,
                                                 fontFamily: FontFamily.latto,
                                               ),
@@ -187,17 +233,17 @@ class EjercicioCardView extends StatelessWidget {
                                             content: Container(
                                               child: SingleChildScrollView(
                                                 physics:
-                                                    const BouncingScrollPhysics(),
+                                                const BouncingScrollPhysics(),
                                                 child: Column(
                                                   mainAxisSize:
-                                                      MainAxisSize.min,
+                                                  MainAxisSize.min,
                                                   children: <Widget>[
                                                     Container(
                                                       width: 150,
                                                       color: Colors.white10,
                                                       child: Image.asset(
                                                         'assets/images/' +
-                                                            ejercicio.img,
+                                                            widget.ejercicio.img,
                                                       ),
                                                     ),
                                                     Html(
@@ -207,22 +253,22 @@ class EjercicioCardView extends StatelessWidget {
                                                             color: Colors.black,
                                                             fontSize: FontSize(
                                                                 ScreenUtil().setSp(
-                                                                    fontSizeContenido)),
+                                                                    widget.fontSizeContenido)),
                                                             fontFamily: 'Latto',
                                                             fontWeight:
-                                                                FontWeight
-                                                                    .w500),
+                                                            FontWeight
+                                                                .w500),
                                                         "span": Style(
                                                             color: const Color(
                                                                 0xff450075),
                                                             fontSize:
-                                                                FontSize( ScreenUtil().setSp(
-                                                                    fontSizeContenido)),
+                                                            FontSize( ScreenUtil().setSp(
+                                                                widget.fontSizeContenido)),
                                                             fontWeight:
-                                                                FontWeight.w400,
+                                                            FontWeight.w400,
                                                             fontFamily:
-                                                                FontFamily
-                                                                    .latto),
+                                                            FontFamily
+                                                                .latto),
                                                       },
                                                     ),
                                                   ],
@@ -246,6 +292,7 @@ class EjercicioCardView extends StatelessWidget {
       },
     );
   }
+
 
   _showDialog<T>({BuildContext context, Widget child}) {
     showDialog<T>(

@@ -36,6 +36,13 @@ abstract class _EjercicioStore with Store {
   @observable
   List<Tema> _temas = [];
 
+  @observable
+  int _idEjercicioSeleccionado = 0;
+
+  @observable
+  int _idTemaSeleccionado = 0;
+
+
   @computed
   bool get loading => ejercicioResponse.status == FutureStatus.pending;
 
@@ -93,6 +100,15 @@ abstract class _EjercicioStore with Store {
   int get ejercicioCount {
     return _ejercicios.length;
   }
+  @computed
+  int get idEjercicioSeleccionado {
+    return _idEjercicioSeleccionado;
+  }
+  @computed
+  int get idTemaSeleccionado {
+    return _idTemaSeleccionado;
+  }
+
 
   @action
   Future<List<Ejercicio>> getEjercicios() {
@@ -131,5 +147,13 @@ abstract class _EjercicioStore with Store {
   @action
   void setSelectedEjercicio(Ejercicio ejercicio) {
     _selectedEjercicio = ejercicio;
+  }
+  @action
+  void setIdEjercicioSeleccionado(int ejercicio) {
+    _idEjercicioSeleccionado = ejercicio;
+  }
+  @action
+  void setIdTemaSeleccionado(int tema) {
+    _idTemaSeleccionado = tema;
   }
 }

@@ -72,6 +72,12 @@ mixin _$ContenidoStore on _ContenidoStore, Store {
   @override
   String get searchTerm =>
       (_$searchTermComputed ??= Computed<String>(() => super.searchTerm)).value;
+  Computed<int> _$idContenidoSeleccionadoComputed;
+
+  @override
+  int get idContenidoSeleccionado => (_$idContenidoSeleccionadoComputed ??=
+          Computed<int>(() => super.idContenidoSeleccionado))
+      .value;
 
   final _$successAtom = Atom(name: '_ContenidoStore.success');
 
@@ -212,6 +218,26 @@ mixin _$ContenidoStore on _ContenidoStore, Store {
     }, _$_hidePlaceholderAtom, name: '${_$_hidePlaceholderAtom.name}_set');
   }
 
+  final _$_idContenidoSeleccionadoAtom =
+      Atom(name: '_ContenidoStore._idContenidoSeleccionado');
+
+  @override
+  int get _idContenidoSeleccionado {
+    _$_idContenidoSeleccionadoAtom.context
+        .enforceReadPolicy(_$_idContenidoSeleccionadoAtom);
+    _$_idContenidoSeleccionadoAtom.reportObserved();
+    return super._idContenidoSeleccionado;
+  }
+
+  @override
+  set _idContenidoSeleccionado(int value) {
+    _$_idContenidoSeleccionadoAtom.context.conditionallyRunInAction(() {
+      super._idContenidoSeleccionado = value;
+      _$_idContenidoSeleccionadoAtom.reportChanged();
+    }, _$_idContenidoSeleccionadoAtom,
+        name: '${_$_idContenidoSeleccionadoAtom.name}_set');
+  }
+
   final _$_ContenidoStoreActionController =
       ActionController(name: '_ContenidoStore');
 
@@ -270,6 +296,16 @@ mixin _$ContenidoStore on _ContenidoStore, Store {
     final _$actionInfo = _$_ContenidoStoreActionController.startAction();
     try {
       return super.setSearchTerm(term);
+    } finally {
+      _$_ContenidoStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void setIdContenidoSeleccionado(int term) {
+    final _$actionInfo = _$_ContenidoStoreActionController.startAction();
+    try {
+      return super.setIdContenidoSeleccionado(term);
     } finally {
       _$_ContenidoStoreActionController.endAction(_$actionInfo);
     }

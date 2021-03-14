@@ -10,10 +10,11 @@ class CreditoView extends StatelessWidget {
   final double fontSizeTitulo;
   final double fontSizeCreditoCargo;
 
-  const CreditoView({Key key,
-    this.fontSizeContenido,
-    this.fontSizeTitulo,
-    this.fontSizeCreditoCargo})
+  const CreditoView(
+      {Key key,
+      this.fontSizeContenido,
+      this.fontSizeTitulo,
+      this.fontSizeCreditoCargo})
       : super(key: key);
 
   @override
@@ -37,7 +38,7 @@ class CreditoView extends StatelessWidget {
               title: Padding(
                   padding: EdgeInsets.all(10),
                   child: Text(
-                    'Créditos Realización',
+                    'Créditos de Realización',
                     style: TextStyle(
                         color: Color(0xff450075),
                         fontSize: ScreenUtil().setSp(fontSizeTitulo),
@@ -178,57 +179,55 @@ class CreditoView extends StatelessWidget {
                     ),
                   ),
                   ListTile(
-                    title: Text(
-                      'Gestión de la calidad y auditoría'.toUpperCase(),
-                      style: TextStyle(
-                          color: Colors.black,
-                          fontSize: ScreenUtil().setSp(fontSizeCreditoCargo),
-                          fontFamily: 'Latto',
-                          fontWeight: FontWeight.bold),
-                      softWrap: true,
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
-                      textAlign: TextAlign.center,
-                    ),
-                    subtitle: Column(
-                      children: <Widget>[
-                        Text(
-                          'Mercedes María Sosa Hernández',
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontSize: ScreenUtil().setSp(fontSizeContenido),
-                              fontFamily: 'Latto'),
-                          softWrap: true,
-                          maxLines: 2,
-                          overflow: TextOverflow.ellipsis,
-                          textAlign: TextAlign.center,
-                        ),
-    Text(
-    'Anays Gómez García ',
-    style: TextStyle(
-    color: Colors.black,
-    fontSize: ScreenUtil().setSp(fontSizeContenido),
-    fontFamily: 'Latto'),
-    softWrap: true,
-    maxLines: 2,
-    overflow: TextOverflow.ellipsis,
-    textAlign: TextAlign.center,
-    ),
-                        Text(
-                          'Ivett Muñoz Ramírez',
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontSize: ScreenUtil().setSp(fontSizeContenido),
-                              fontFamily: 'Latto'),
-                          softWrap: true,
-                          maxLines: 2,
-                          overflow: TextOverflow.ellipsis,
-                          textAlign: TextAlign.center,
-                        ),
-                      ],
-                    )
-                  ),
-
+                      title: Text(
+                        'Gestión de la calidad y auditoría'.toUpperCase(),
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontSize: ScreenUtil().setSp(fontSizeCreditoCargo),
+                            fontFamily: 'Latto',
+                            fontWeight: FontWeight.bold),
+                        softWrap: true,
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                        textAlign: TextAlign.center,
+                      ),
+                      subtitle: Column(
+                        children: <Widget>[
+                          Text(
+                            'Mercedes María Sosa Hernández',
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontSize: ScreenUtil().setSp(fontSizeContenido),
+                                fontFamily: 'Latto'),
+                            softWrap: true,
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                            textAlign: TextAlign.center,
+                          ),
+                          Text(
+                            'Anays Gómez García ',
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontSize: ScreenUtil().setSp(fontSizeContenido),
+                                fontFamily: 'Latto'),
+                            softWrap: true,
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                            textAlign: TextAlign.center,
+                          ),
+                          Text(
+                            'Ivett Muñoz Ramírez',
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontSize: ScreenUtil().setSp(fontSizeContenido),
+                                fontFamily: 'Latto'),
+                            softWrap: true,
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                            textAlign: TextAlign.center,
+                          ),
+                        ],
+                      )),
                   ListTile(
                     title: Text(
                       'ISBN'.toUpperCase(),
@@ -279,13 +278,10 @@ class CreditoView extends StatelessWidget {
                       textAlign: TextAlign.center,
                     ),
                   ),
-
                 ],
               ),
             )
           ],
-
-
         ),
       ),
     );

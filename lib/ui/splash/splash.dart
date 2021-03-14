@@ -38,7 +38,7 @@ class _SplashScreenState extends State<SplashScreen>
     _cloudOutAnimation = CurvedAnimation(
         parent: _animationController, curve: Interval(0.7, 0.85));
     _splashAnimation =
-        CurvedAnimation(parent: _animationController, curve: Interval(0.9, 1));
+        CurvedAnimation(parent: _animationController, curve: Interval(0.95, 1));
 
     super.initState();
     startTimer();
@@ -110,7 +110,7 @@ class _SplashScreenState extends State<SplashScreen>
             child: HomeScreen(),
           );
         },
-        transitionDuration: Duration(milliseconds: 300)));
+        transitionDuration: Duration(seconds: 10)));
   }
 
   _cloudAnimation() {

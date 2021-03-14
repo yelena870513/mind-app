@@ -222,7 +222,7 @@ class SplashAnimationWidget extends StatelessWidget {
                   width: queryData.width * 0.8,
                   top: queryData.height * 0.8,
                   left: 20,
-                  duration: Duration(seconds: 2),
+                  duration: Duration(seconds: 10),
                   curve: Interval(0.1, 0.6, curve: Curves.linear),
                   child: AnimatedBuilder(
                     child: Image.asset(
@@ -232,7 +232,7 @@ class SplashAnimationWidget extends StatelessWidget {
                     builder: (context, child) {
                       return AnimatedOpacity(
                         child: child,
-                        duration: Duration(milliseconds: 100),
+                        duration: Duration(milliseconds: 300),
                         opacity: splashAnimation.value,
                       );
                     },

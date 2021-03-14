@@ -43,6 +43,9 @@ abstract class _ContenidoStore with Store {
   @observable
   bool _hidePlaceholder = false;
 
+  @observable
+  int _idContenidoSeleccionado = 0;
+
   @computed
   bool get hidePlaceholder => _hidePlaceholder;
 
@@ -135,6 +138,11 @@ abstract class _ContenidoStore with Store {
     return _searchTerm;
   }
 
+  @computed
+  int get idContenidoSeleccionado {
+    return _idContenidoSeleccionado;
+  }
+
   @action
   Future<List<Contenido>> getContenidos() {
     final future = _repository.getContenidos();
@@ -182,5 +190,9 @@ abstract class _ContenidoStore with Store {
   @action
   void setSearchTerm(String term) {
     _searchTerm = term;
+  }
+  @action
+  void setIdContenidoSeleccionado(int term) {
+    _idContenidoSeleccionado = term;
   }
 }
