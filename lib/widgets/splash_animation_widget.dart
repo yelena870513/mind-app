@@ -220,13 +220,12 @@ class SplashAnimationWidget extends StatelessWidget {
                 AnimatedPositioned(
                   height: queryData.height * 0.8,
                   width: queryData.width * 0.8,
-                  top: queryData.height * 0.8,
-                  left: 20,
                   duration: Duration(seconds: 10),
                   curve: Interval(0.1, 0.6, curve: Curves.linear),
                   child: AnimatedBuilder(
                     child: Image.asset(
                       'assets/images/splash.png',
+                      fit: BoxFit.contain,
                     ),
                     animation: splashAnimation,
                     builder: (context, child) {
