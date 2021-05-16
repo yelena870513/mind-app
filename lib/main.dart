@@ -5,6 +5,9 @@ import 'package:boilerplate/di/modules/local_module.dart';
 import 'package:boilerplate/di/modules/netwok_module.dart';
 import 'package:boilerplate/di/modules/preference_module.dart';
 import 'package:boilerplate/routes.dart';
+import 'package:boilerplate/stores/contenido/contenido_store.dart';
+import 'package:boilerplate/stores/ejercicio/ejercicio_store.dart';
+import 'package:boilerplate/stores/font/font_store.dart';
 import 'package:boilerplate/stores/language/language_store.dart';
 import 'package:boilerplate/stores/post/post_store.dart';
 import 'package:boilerplate/stores/theme/theme_store.dart';
@@ -45,6 +48,9 @@ class MyApp extends StatelessWidget {
   final ThemeStore _themeStore = ThemeStore(appComponent.getRepository());
   final PostStore _postStore = PostStore(appComponent.getRepository());
   final LanguageStore _languageStore = LanguageStore(appComponent.getRepository());
+  final ContenidoStore _contenidoStore = ContenidoStore(appComponent.getRepository());
+  final EjercicioStore _ejercicioStore = EjercicioStore(appComponent.getRepository());
+  final FontStore _fontStore = FontStore();
 
   @override
   Widget build(BuildContext context) {
@@ -53,6 +59,9 @@ class MyApp extends StatelessWidget {
         Provider<ThemeStore>.value(value: _themeStore),
         Provider<PostStore>.value(value: _postStore),
         Provider<LanguageStore>.value(value: _languageStore),
+        Provider<ContenidoStore>.value(value: _contenidoStore),
+        Provider<EjercicioStore>.value(value: _ejercicioStore),
+        Provider<FontStore>.value(value: _fontStore),
       ],
       child: Observer(
         builder: (context) {

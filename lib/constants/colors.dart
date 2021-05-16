@@ -15,4 +15,9 @@ class AppColors {
     800: const Color(0xFFDB7424),
     900: const Color(0xFFD56217)
   };
+
+  static const mainSplashColor = Color(0xff5113AA);
+  static const secundarySplashColor = Color(0xffBC53FA);
+  static const backgroundColor = Colors.grey;
+  static const search = Color(0xffB9BABC);
 }
